@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "Alpha160418030_160718006FoodJournalApp"

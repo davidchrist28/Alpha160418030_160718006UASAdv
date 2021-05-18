@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Alpha160418030_160718006FoodJournalApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="foodLog">Food Log</string>
+    <string name="report">Report</string>
+    <string name="profile">Profile</string>
+</resources>

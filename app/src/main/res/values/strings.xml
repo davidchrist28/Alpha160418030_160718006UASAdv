@@ -5,4 +5,7 @@
     <string name="foodLog">Food Log</string>
     <string name="report">Report</string>
     <string name="profile">Profile</string>
+    <string name="maintain">Maintain Weight</string>
+    <string name="gain">Gain Weight</string>
+    <string name="loss">Loss Weight</string>
 </resources>

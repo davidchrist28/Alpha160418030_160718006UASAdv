@@ -19,6 +19,7 @@
             android:layout_marginTop="35dp"
             android:layout_marginEnd="30dp"
             android:text="Food Journal Report"
+            android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -54,8 +55,8 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recViewR"
-                    android:layout_width="349dp"
-                    android:layout_height="576dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

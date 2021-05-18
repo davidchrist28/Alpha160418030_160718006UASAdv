@@ -2,7 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_navigation">
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/welcomeFragment">
 
     <fragment
         android:id="@+id/itemFoodLog"
@@ -28,4 +29,19 @@
         android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/actionItemFoodLog"
+            app:destination="@id/itemFoodLog" />
+        <action
+            android:id="@+id/actionItemReport"
+            app:destination="@id/itemReport" />
+        <action
+            android:id="@+id/actionItemProfile"
+            app:destination="@id/itemProfile" />
+    </fragment>
 </navigation>

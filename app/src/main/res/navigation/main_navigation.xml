@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/itemFoodLog"
-        android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.FoodLogFragment"
+        android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.FoodLogFragment"
         android:label="fragment_food_log"
         tools:layout="@layout/fragment_food_log" >
         <action
@@ -16,22 +16,22 @@
     </fragment>
     <fragment
         android:id="@+id/logMealFragment"
-        android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.LogMealFragment"
+        android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.LogMealFragment"
         android:label="fragment_log_meal"
         tools:layout="@layout/fragment_log_meal" />
     <fragment
         android:id="@+id/itemReport"
-        android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.ReportFragment"
+        android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.ReportFragment"
         android:label="fragment_report"
         tools:layout="@layout/fragment_report" />
     <fragment
         android:id="@+id/itemProfile"
-        android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.ProfileFragment"
+        android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.WelcomeFragment"
+        android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action

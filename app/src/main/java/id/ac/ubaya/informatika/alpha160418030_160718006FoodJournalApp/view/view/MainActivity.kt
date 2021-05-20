@@ -1,4 +1,4 @@
-package id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view
+package id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

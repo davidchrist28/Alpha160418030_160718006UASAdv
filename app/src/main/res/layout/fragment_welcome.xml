@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 <data>
-    <variable name="user" type="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.User" />
+    <variable name="listener" type="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.ButtonStartClickListener" />
 </data>
 
 <FrameLayout
@@ -228,6 +228,7 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="20dp"
                     android:text="Let's Start"
+                    android:onClick="@{listener::onButtonStartClick}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

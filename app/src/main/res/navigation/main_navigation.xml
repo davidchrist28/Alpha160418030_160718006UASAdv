@@ -13,6 +13,21 @@
         <action
             android:id="@+id/actionLogMealFragment"
             app:destination="@id/logMealFragment" />
+        <argument
+            android:name="name_user"
+            app:argType="string" />
+        <argument
+            android:name="age"
+            app:argType="integer" />
+        <argument
+            android:name="gender"
+            app:argType="string" />
+        <argument
+            android:name="height"
+            app:argType="integer" />
+        <argument
+            android:name="weight"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/logMealFragment"
@@ -23,12 +38,20 @@
         android:id="@+id/itemReport"
         android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.ReportFragment"
         android:label="fragment_report"
-        tools:layout="@layout/fragment_report" />
+        tools:layout="@layout/fragment_report" >
+        <argument
+            android:name="name_user"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/itemProfile"
         android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <argument
+            android:name="name_user"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.WelcomeFragment"

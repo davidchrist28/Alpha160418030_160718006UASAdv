@@ -1,9 +1,6 @@
 package id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 import kotlin.reflect.KClass
 
 @Entity(tableName = "users")
@@ -24,14 +21,18 @@ data class User (
 }
 
 @Entity(tableName = "foodLogs")
-class Log (
+data class Log (
     @ColumnInfo(name = "foodName")
     var foodName: String,
     @ColumnInfo(name = "calories")
-    var calories: String
+    var calories: String,
+    @ColumnInfo(name = "id_user")
+    var id_user: Int
 ) {
-//    @ForeignKey(entity = KClass<User>)
-//    var id_user: Int = 0,
     @PrimaryKey(autoGenerate = true)
     var logId: Int = 0
 }
+
+data class UserWithFoodLog (
+    @Embedded val user: User, @Relation(parentColumn = "id", entityColumn = "id_user") val log: List<Log>
+)

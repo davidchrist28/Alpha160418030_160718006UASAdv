@@ -9,6 +9,7 @@ import androidx.navigation.Navigation
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.R
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databinding.FragmentWelcomeBinding
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.User
+import kotlinx.android.synthetic.main.fragment_welcome.*
 import kotlinx.android.synthetic.main.fragment_welcome.view.*
 
 class WelcomeFragment : Fragment(), ButtonStartClickListener {
@@ -28,7 +29,16 @@ class WelcomeFragment : Fragment(), ButtonStartClickListener {
     }
 
     override fun onButtonStartClick(v: View, user: User) {
-//        val arahin = WelcomeFragmentDirections.actionItemFoodLog(v.txtNameW.text, v.txtAgeW.text, )
-//        Navigation.findNavController(v).navigate(arahin)
+        var nama = txtNameW.text.toString()
+        var age = txtAgeW.text.toString().toInt()
+        var gender: String
+        var height = txtHeightW.text.toString().toInt()
+        var weight = txtWeightW.text.toString().toInt()
+
+        if (radioGroupGender.checkedRadioButtonId == R.id.radioMale) gender = "male"
+        else gender = "female"
+
+        val arahin = WelcomeFragmentDirections.actionItemFoodLog(nama, age, gender, height, weight)
+        Navigation.findNavController(v).navigate(arahin)
     }
 }

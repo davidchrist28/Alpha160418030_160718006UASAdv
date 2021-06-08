@@ -10,6 +10,12 @@ interface UserDao {
     @Query("SELECT * FROM users")
     suspend fun selectAllUsers(): List<User>
 
+    @Query("SELECT * FROM users WHERE id = :id")
+    suspend fun selectSpecUsers(id: Int): User
+
+    @Query("SELECT * FROM users WHERE name = :name")
+    suspend fun selectSpecUsers(name: String): User
+
     @Query("UPDATE users SET name = :name, age = :age, gender = :gender, height = :height, weight = :weight where id = :id")
     suspend fun update(name:String, age:Int, gender:String, height:Int, weight:Int, id:Int)
 

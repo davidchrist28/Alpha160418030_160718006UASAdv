@@ -38,6 +38,8 @@ class WelcomeFragment : Fragment(), ButtonStartClickListener {
         if (radioGroupGender.checkedRadioButtonId == R.id.radioMale) gender = "male"
         else gender = "female"
 
+
+
         val arahin = WelcomeFragmentDirections.actionItemFoodLog(nama, age, gender, height, weight)
         Navigation.findNavController(v).navigate(arahin)
     }

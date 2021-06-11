@@ -16,6 +16,8 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
     var profileLD = MutableLiveData<User>()
     private var job = Job()
 
+
+
     fun currUser(id: Int) {
         launch {
             var datB = buildDB(getApplication())
@@ -27,6 +29,13 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
         launch {
             var datB = buildDB(getApplication())
             profileLD.value = datB.userDao().selectSpecUsers(name)
+        }
+    }
+
+    fun updateUser(currUser: User, userNewD: User) {
+        launch {
+            var datB = buildDB(getApplication())
+            datB.userDao().update(userNewD.name, userNewD.age, userNewD.gender, userNewD.height, userNewD.weight, currUser.id)
         }
     }
 

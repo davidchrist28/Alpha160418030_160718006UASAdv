@@ -6,3 +6,7 @@ import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.User
 interface ButtonStartClickListener {
     fun onButtonStartClick(v:View, user: User)
 }
+
+interface ButtonUpdateProfileListener {
+    fun onButtonUpdateProfile(v: View, user: User)
+}

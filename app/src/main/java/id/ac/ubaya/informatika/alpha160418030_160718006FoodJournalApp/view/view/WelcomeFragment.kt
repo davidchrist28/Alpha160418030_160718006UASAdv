@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.R
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databinding.FragmentWelcomeBinding
@@ -19,8 +20,8 @@ class WelcomeFragment : Fragment(), ButtonStartClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_welcome, container, false)
+        dataBinding = DataBindingUtil.inflate<FragmentWelcomeBinding>(inflater, R.layout.fragment_welcome, container, false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,14 +32,12 @@ class WelcomeFragment : Fragment(), ButtonStartClickListener {
     override fun onButtonStartClick(v: View, user: User) {
         var nama = txtNameW.text.toString()
         var age = txtAgeW.text.toString().toInt()
-        var gender: String
+        var gender: Int
         var height = txtHeightW.text.toString().toInt()
         var weight = txtWeightW.text.toString().toInt()
 
-        if (radioGroupGender.checkedRadioButtonId == R.id.radioMale) gender = "male"
-        else gender = "female"
-
-
+        if (radioGroupGender.checkedRadioButtonId == R.id.radioMale) gender = 1
+        else gender = 2
 
         val arahin = WelcomeFragmentDirections.actionItemFoodLog(nama, age, gender, height, weight)
         Navigation.findNavController(v).navigate(arahin)

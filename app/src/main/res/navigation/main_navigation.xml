@@ -21,7 +21,7 @@
             app:argType="integer" />
         <argument
             android:name="gender"
-            app:argType="string" />
+            app:argType="integer" />
         <argument
             android:name="height"
             app:argType="integer" />

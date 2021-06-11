@@ -17,7 +17,7 @@ interface UserDao {
     suspend fun selectSpecUsers(name: String): User
 
     @Query("UPDATE users SET name = :name, age = :age, gender = :gender, height = :height, weight = :weight where id = :id")
-    suspend fun update(name:String, age:Int, gender:String, height:Int, weight:Int, id:Int)
+    suspend fun update(name:String, age:Int, gender:Int, height:Int, weight:Int, id:Int)
 
     @Delete
     suspend fun delete(user: User)

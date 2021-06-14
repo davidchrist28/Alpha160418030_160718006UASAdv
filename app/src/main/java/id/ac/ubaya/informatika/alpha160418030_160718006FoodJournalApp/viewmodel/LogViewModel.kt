@@ -26,7 +26,7 @@ class LogViewModel(application: Application): AndroidViewModel(application), Cor
     fun fetch(id: Int) {
         launch {
             var datB = buildDB(getApplication())
-//            logLD.value = datB.logDao().selectLogByUser(id)
+            logLD.value = datB.logDao().selectLogByUser(id)
         }
     }
 
@@ -34,14 +34,21 @@ class LogViewModel(application: Application): AndroidViewModel(application), Cor
         launch {
             var datB = buildDB(getApplication())
             var id = user.id
-//            logLD.value = datB.logDao().selectLogByUser(id)
+            logLD.value = datB.logDao().selectLogByUser(id)
+        }
+    }
+
+    fun selectSpecific(log_id: Int) {
+        launch {
+            var datB = buildDB(getApplication())
+            logLD.value = listOf(datB.logDao().selectLog(log_id))
         }
     }
 
     fun refresh() {
         launch {
             var datB = buildDB(getApplication())
-//            logLD.value = datB.logDao().selectAllLogs()
+            logLD.value = datB.logDao().selectAllLogs()
         }
     }
 

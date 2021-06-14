@@ -9,6 +9,7 @@ import androidx.room.RoomDatabase
 @Database(entities = arrayOf(User::class, Log::class), version = 1)
 abstract class FoodJourneyDatabase: RoomDatabase() {
     abstract fun userDao():UserDao
+    abstract fun logDao():LogDao
 
     companion object {
         @Volatile

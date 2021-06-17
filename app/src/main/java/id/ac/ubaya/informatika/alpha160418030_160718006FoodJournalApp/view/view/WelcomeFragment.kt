@@ -30,14 +30,11 @@ class WelcomeFragment : Fragment(), ButtonStartClickListener {
     }
 
     override fun onButtonStartClick(v: View, user: User) {
-        var nama = txtNameW.text.toString()
-        var age = txtAgeW.text.toString().toInt()
-        var gender: Int
-        var height = txtHeightW.text.toString().toInt()
-        var weight = txtWeightW.text.toString().toInt()
-
-        if (radioGroupGender.checkedRadioButtonId == R.id.radioMale) gender = 1
-        else gender = 2
+        var nama = user.name
+        var age = user.age
+        var gender = user.gender
+        var height = user.height
+        var weight = user.weight
 
         val arahin = WelcomeFragmentDirections.actionItemFoodLog(nama, age, gender, height, weight)
         Navigation.findNavController(v).navigate(arahin)

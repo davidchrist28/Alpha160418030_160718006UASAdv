@@ -16,7 +16,12 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
     var profileLD = MutableLiveData<User>()
     private var job = Job()
 
-
+    fun newUser(user: User) {
+        launch {
+            var datB = buildDB(getApplication())
+            datB.userDao().insertUser(user)
+        }
+    }
 
     fun currUser(id: Int) {
         launch {

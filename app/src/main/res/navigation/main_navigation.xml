@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/welcomeFragment">
+    app:startDestination="@id/itemFoodLog">
 
     <fragment
-        android:id="@+id/itemFoodLog"
+        android:id="@+id/foodLogFragment"
         android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.FoodLogFragment"
         android:label="fragment_food_log"
         tools:layout="@layout/fragment_food_log" >
@@ -14,20 +14,11 @@
             android:id="@+id/actionLogMealFragment"
             app:destination="@id/logMealFragment" />
         <argument
-            android:name="name_user"
+            android:name="goal"
             app:argType="string" />
         <argument
-            android:name="age"
-            app:argType="integer" />
-        <argument
-            android:name="gender"
-            app:argType="integer" />
-        <argument
-            android:name="height"
-            app:argType="integer" />
-        <argument
-            android:name="weight"
-            app:argType="integer" />
+            android:name="id"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/logMealFragment"
@@ -40,7 +31,7 @@
         android:label="fragment_report"
         tools:layout="@layout/fragment_report" >
         <argument
-            android:name="name_user"
+            android:name="id"
             app:argType="string" />
     </fragment>
     <fragment
@@ -49,22 +40,16 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <argument
-            android:name="name_user"
+            android:name="id"
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/welcomeFragment"
+        android:id="@+id/itemFoodLog"
         android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
-            android:id="@+id/actionItemFoodLog"
-            app:destination="@id/itemFoodLog" />
-        <action
-            android:id="@+id/actionItemReport"
-            app:destination="@id/itemReport" />
-        <action
-            android:id="@+id/actionItemProfile"
-            app:destination="@id/itemProfile" />
+            android:id="@+id/actionfoodLogFragment"
+            app:destination="@id/foodLogFragment" />
     </fragment>
 </navigation>

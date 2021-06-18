@@ -4,8 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 <data>
-    <variable name="user" type="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.User" />
+    <variable name="radiotarget"  type="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.RadioClickListener" />
     <variable name="listener" type="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.ButtonStartClickListener" />
+    <variable name="radiolistener"  type="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.RadioGenderClickListener" />
 </data>
 
 <FrameLayout
@@ -209,18 +210,24 @@
                             android:id="@+id/radioMaintain"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:tag="Maintain"
+                            android:onClick="@{(view) -> radiotarget.onRadioClick(view)}"
                             android:text="@string/maintain" />
 
                         <RadioButton
                             android:id="@+id/radioGain"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:tag="Gain"
+                            android:onClick="@{(view) -> radiotarget.onRadioClick(view)}"
                             android:text="@string/gain" />
 
                         <RadioButton
                             android:id="@+id/radioLoss"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:tag="Loss"
+                            android:onClick="@{(view) -> radiotarget.onRadioClick(view)}"
                             android:text="@string/loss" />
                     </RadioGroup>
 
@@ -232,7 +239,7 @@
                         android:layout_marginTop="30dp"
                         android:layout_marginEnd="20dp"
                         android:layout_marginBottom="20dp"
-                        android:onClick="@{(view) -> listener.onButtonStartClick(view, user)}"
+                        android:onClick="@{(view) -> listener.onButtonStartClick(view)}"
                         android:text="Let's Start"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -256,12 +263,16 @@
                             android:id="@+id/radioMale"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:tag="1"
+                            android:onClick="@{(view) -> radiolistener.onRadioGenderClick(view)}"
                             android:text="@string/male" />
 
                         <RadioButton
                             android:id="@+id/radioFemale"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:tag="2"
+                            android:onClick="@{(view) -> radiolistener.onRadioGenderClick(view)}"
                             android:text="@string/female" />
                     </RadioGroup>
                 </androidx.constraintlayout.widget.ConstraintLayout>

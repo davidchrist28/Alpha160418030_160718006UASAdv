@@ -36,18 +36,11 @@ class FoodLogFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var name = FoodLogFragmentArgs.fromBundle(requireArguments()).nameUser
-        var age = FoodLogFragmentArgs.fromBundle(requireArguments()).age
-        var gender = FoodLogFragmentArgs.fromBundle(requireArguments()).gender
-        var height = FoodLogFragmentArgs.fromBundle(requireArguments()).height
-        var weight = FoodLogFragmentArgs.fromBundle(requireArguments()).weight
-        var currUser: User = User(name, age, gender, height, weight)
-
         viewModel = ViewModelProvider(this).get(LogViewModel::class.java)
-        viewModel.newUser(currUser)
-
         proViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
-        proViewModel.currUser(name)
+
+        var id = FoodLogFragmentArgs.fromBundle(requireArguments()).id
+        proViewModel.currUser(id)
 
         recView.layoutManager = LinearLayoutManager(context)
         recView.adapter = adapter

@@ -32,8 +32,8 @@ class ProfileFragment : Fragment(), ButtonUpdateProfileListener {
         dataBinding.listener = this
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
-        var currUserName = ProfileFragmentArgs.fromBundle(requireArguments()).nameUser
-        viewModel.currUser(currUserName)
+        //var currUserName = ProfileFragmentArgs.fromBundle(requireArguments()).nameUser
+        //viewModel.currUser(currUserName)
 
         observeViewModel()
     }

@@ -8,13 +8,13 @@ data class User (
     @ColumnInfo(name = "name")
     var name: String,
     @ColumnInfo(name = "age")
-    var age: Int,
+    var age: String,
     @ColumnInfo(name = "gender")
     var gender: Int,
     @ColumnInfo(name = "height")
-    var height: Int,
+    var height: String,
     @ColumnInfo(name = "weight")
-    var weight: Int
+    var weight: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

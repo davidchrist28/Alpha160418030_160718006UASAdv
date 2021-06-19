@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-
+        <variable name="log" type="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.Log" />
     </data>
 <FrameLayout
     android:layout_width="match_parent"

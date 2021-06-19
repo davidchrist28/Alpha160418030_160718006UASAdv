@@ -23,7 +23,7 @@ class LogViewModel(application: Application): AndroidViewModel(application), Cor
         }
     }
 
-    fun fetch(id: Int) {
+    fun fetch(id: String) {
         launch {
             var datB = buildDB(getApplication())
             logLD.value = datB.logDao().selectLogByUser(id)
@@ -33,7 +33,7 @@ class LogViewModel(application: Application): AndroidViewModel(application), Cor
     fun fetch(user: User) {
         launch {
             var datB = buildDB(getApplication())
-            var id = user.id
+            var id = user.id.toString()
             logLD.value = datB.logDao().selectLogByUser(id)
         }
     }

@@ -24,7 +24,11 @@
         android:id="@+id/logMealFragment"
         android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.LogMealFragment"
         android:label="fragment_log_meal"
-        tools:layout="@layout/fragment_log_meal" />
+        tools:layout="@layout/fragment_log_meal" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/itemReport"
         android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.ReportFragment"

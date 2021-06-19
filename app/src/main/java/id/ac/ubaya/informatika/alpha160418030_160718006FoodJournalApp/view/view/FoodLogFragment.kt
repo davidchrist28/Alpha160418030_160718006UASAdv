@@ -18,6 +18,7 @@ import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.User
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.viewmodel.LogViewModel
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_food_log.*
+import kotlinx.android.synthetic.main.fragment_food_log.view.*
 
 class FoodLogFragment : Fragment() {
     private lateinit var viewModel: LogViewModel
@@ -41,20 +42,35 @@ class FoodLogFragment : Fragment() {
 
         var id = FoodLogFragmentArgs.fromBundle(requireArguments()).id
         proViewModel.currUser(id)
+        observeProfile()
+        viewModel.fetch(id)
 
         recView.layoutManager = LinearLayoutManager(context)
         recView.adapter = adapter
 
-        observeViewModel()
+        observeLog()
+
+        if(dataBinding.userCurr!!.gender == 1) {
+            view.txtGender.setText("Male")
+        } else {
+            view.txtGender.setText("Female")
+        }
     }
 
     fun observeViewModel() {
-        viewModel.logLD.observe(viewLifecycleOwner, Observer {
-            adapter.updateList(it)
-        })
+        observeProfile()
+        observeLog()
+    }
 
+    fun observeProfile() {
         proViewModel.profileLD.observe(viewLifecycleOwner, Observer {
             dataBinding.userCurr = it
+        })
+    }
+
+    fun observeLog() {
+        viewModel.logLD.observe(viewLifecycleOwner, Observer {
+            adapter.updateList(it)
         })
     }
 }

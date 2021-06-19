@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable name="userCurr" type="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.User" />
+        <variable name="fablistener" type="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.FabClickListener" />
     </data>
 <FrameLayout
     android:layout_width="match_parent"
@@ -46,7 +47,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
-            android:text="@{userCurr.gender}"
             android:textSize="17sp"
             app:layout_constraintStart_toEndOf="@+id/txtAge"
             app:layout_constraintTop_toBottomOf="@+id/txtName" />
@@ -58,6 +58,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
             android:clickable="true"
+            android:onClick="@{(view) -> fablistener.onFabClick(view, userCurr)}"
             android:src="@drawable/ic_baseline_add_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

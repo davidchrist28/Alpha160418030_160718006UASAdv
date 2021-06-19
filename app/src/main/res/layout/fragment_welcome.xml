@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 <data>
+    <variable name="user" type="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.User" />
     <variable name="radiotarget"  type="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.RadioClickListener" />
     <variable name="listener" type="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.ButtonStartClickListener" />
     <variable name="radiolistener"  type="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.RadioGenderClickListener" />

@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.R
-import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databinding.LogReportLayoutBinding
+import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databinding.LogLayoutBinding
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.Log
 
 class FoodLogAdapter(val foodLogList: ArrayList<Log>): RecyclerView.Adapter<FoodLogAdapter.FoodLogViewHolder>() {
-    class FoodLogViewHolder(var view: LogReportLayoutBinding): RecyclerView.ViewHolder(view.root)
+    class FoodLogViewHolder(var view: LogLayoutBinding): RecyclerView.ViewHolder(view.root)
 
     fun updateList(logList: List<Log>) {
         foodLogList.clear()
@@ -19,7 +19,7 @@ class FoodLogAdapter(val foodLogList: ArrayList<Log>): RecyclerView.Adapter<Food
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodLogViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = DataBindingUtil.inflate<LogReportLayoutBinding>(inflater, R.layout.log_report_layout, parent, false)
+        val view = DataBindingUtil.inflate<LogLayoutBinding>(inflater, R.layout.log_layout, parent, false)
         return FoodLogViewHolder(view)
     }
 
@@ -28,6 +28,6 @@ class FoodLogAdapter(val foodLogList: ArrayList<Log>): RecyclerView.Adapter<Food
     }
 
     override fun onBindViewHolder(holder: FoodLogViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.view.log = foodLogList[position]
     }
 }

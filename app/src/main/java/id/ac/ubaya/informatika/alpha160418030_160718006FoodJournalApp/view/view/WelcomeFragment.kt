@@ -20,7 +20,6 @@ class WelcomeFragment : Fragment(), ButtonStartClickListener, RadioGenderClickLi
     private lateinit var dataBinding: FragmentWelcomeBinding
     private lateinit var viewModel: ProfileViewModel
     lateinit var goal: String
-    var genderCur: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,18 +31,16 @@ class WelcomeFragment : Fragment(), ButtonStartClickListener, RadioGenderClickLi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dataBinding.user = User("", "", 1, "", "")
         dataBinding.listener = this
+        dataBinding.radiolistener = this
+        dataBinding.radiotarget = this
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
     }
 
-    override fun onButtonStartClick(v: View) {
-
-        var name = txtNameW.text.toString()
-        var age = txtAgeW.text.toString()
-        var height = txtHeightW.text.toString()
-        var weight = txtWeightW.text.toString()
-        dataBinding.user = User(name, age, genderCur, height, weight)
-        var id = dataBinding.user.id.toString()
+    override fun onButtonStartClick(v: View, user: User) {
+        viewModel.newUser(user, true)
+        var id = dataBinding.user?.id.toString()
 
         val arahin = WelcomeFragmentDirections.actionfoodLogFragment(id, goal)
         Navigation.findNavController(v).navigate(arahin)
@@ -53,7 +50,13 @@ class WelcomeFragment : Fragment(), ButtonStartClickListener, RadioGenderClickLi
         goal = v.tag.toString()
     }
 
-    override fun onRadioGenderClick(v: View) {
-        genderCur = v.tag.toString().toInt()
+    override fun onRadioGenderClick(v: View, gen: Int, user: User) {
+        user.gender = gen
+    }
+
+    fun observeViewModel() {
+        viewModel.profileLD.observe(viewLifecycleOwner, Observer {
+            dataBinding.user = it
+        })
     }
 }

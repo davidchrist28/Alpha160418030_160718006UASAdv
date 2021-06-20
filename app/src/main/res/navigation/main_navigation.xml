@@ -12,13 +12,25 @@
         tools:layout="@layout/fragment_food_log" >
         <action
             android:id="@+id/actionLogMealFragment"
-            app:destination="@id/logMealFragment" />
+            app:destination="@id/logMealFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
         <argument
             android:name="goal"
             app:argType="string" />
         <argument
             android:name="id"
             app:argType="string" />
+        <action
+            android:id="@+id/actionProfileFragment"
+            app:destination="@id/itemProfile"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/actionReportFragment"
+            app:destination="@id/itemReport"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/logMealFragment"
@@ -54,6 +66,8 @@
         tools:layout="@layout/fragment_welcome" >
         <action
             android:id="@+id/actionfoodLogFragment"
-            app:destination="@id/foodLogFragment" />
+            app:destination="@id/foodLogFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 </navigation>

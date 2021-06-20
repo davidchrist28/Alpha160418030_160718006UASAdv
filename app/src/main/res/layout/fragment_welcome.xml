@@ -130,6 +130,7 @@
                             android:id="@+id/txtNameW"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@={user.name}"
                             android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -147,6 +148,7 @@
                             android:id="@+id/txtAgeW"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@={user.age}"
                             android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -164,6 +166,7 @@
                             android:id="@+id/txtWeightW"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@={user.weight}"
                             android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -182,6 +185,7 @@
                             android:id="@+id/txtHeightW"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@={user.height}"
                             android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -212,7 +216,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:tag="Maintain"
-                            android:onClick="@{(view) -> radiotarget.onRadioClick(view)}"
+                            android:onClick="@{radiotarget::onRadioClick}"
                             android:text="@string/maintain" />
 
                         <RadioButton
@@ -220,7 +224,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:tag="Gain"
-                            android:onClick="@{(view) -> radiotarget.onRadioClick(view)}"
+                            android:onClick="@{radiotarget::onRadioClick}"
                             android:text="@string/gain" />
 
                         <RadioButton
@@ -228,7 +232,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:tag="Loss"
-                            android:onClick="@{(view) -> radiotarget.onRadioClick(view)}"
+                            android:onClick="@{radiotarget::onRadioClick}"
                             android:text="@string/loss" />
                     </RadioGroup>
 
@@ -240,7 +244,7 @@
                         android:layout_marginTop="30dp"
                         android:layout_marginEnd="20dp"
                         android:layout_marginBottom="20dp"
-                        android:onClick="@{(view) -> listener.onButtonStartClick(view)}"
+                        android:onClick="@{(view) -> listener.onButtonStartClick(view, user)}"
                         android:text="Let's Start"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -265,7 +269,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:tag="1"
-                            android:onClick="@{(view) -> radiolistener.onRadioGenderClick(view)}"
+                            android:onClick="@{(view) -> radiolistener.onRadioGenderClick(view, 1, user)}"
                             android:text="@string/male" />
 
                         <RadioButton
@@ -273,7 +277,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:tag="2"
-                            android:onClick="@{(view) -> radiolistener.onRadioGenderClick(view)}"
+                            android:onClick="@{(view) -> radiolistener.onRadioGenderClick(view, 2, user)}"
                             android:text="@string/female" />
                     </RadioGroup>
                 </androidx.constraintlayout.widget.ConstraintLayout>

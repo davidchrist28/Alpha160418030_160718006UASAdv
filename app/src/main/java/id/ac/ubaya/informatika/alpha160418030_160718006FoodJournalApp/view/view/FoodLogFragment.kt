@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.R
@@ -20,7 +21,7 @@ import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.viewmodel.
 import kotlinx.android.synthetic.main.fragment_food_log.*
 import kotlinx.android.synthetic.main.fragment_food_log.view.*
 
-class FoodLogFragment : Fragment() {
+class FoodLogFragment : Fragment(), FabClickListener {
     private lateinit var viewModel: LogViewModel
     private lateinit var proViewModel: ProfileViewModel
     private lateinit var dataBinding: FragmentFoodLogBinding
@@ -39,6 +40,8 @@ class FoodLogFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(LogViewModel::class.java)
         proViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        dataBinding.userCurr = User("", "", 1, "", "")
+        dataBinding.fablistener = this
 
         var id = FoodLogFragmentArgs.fromBundle(requireArguments()).id
         proViewModel.currUser(id)
@@ -49,12 +52,11 @@ class FoodLogFragment : Fragment() {
         recView.adapter = adapter
 
         observeLog()
+    }
 
-        if(dataBinding.userCurr!!.gender == 1) {
-            view.txtGender.setText("Male")
-        } else {
-            view.txtGender.setText("Female")
-        }
+    override fun onFabClick(v: View, user: User) {
+        val arahin = FoodLogFragmentDirections.actionLogMealFragment(user.id.toString())
+        Navigation.findNavController(v).navigate(arahin)
     }
 
     fun observeViewModel() {

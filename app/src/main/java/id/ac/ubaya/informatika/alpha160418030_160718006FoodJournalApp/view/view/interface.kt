@@ -5,7 +5,7 @@ import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.Log
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.User
 
 interface ButtonStartClickListener {
-    fun onButtonStartClick(v:View)
+    fun onButtonStartClick(v:View, user: User)
 }
 
 interface ButtonUpdateProfileListener {
@@ -17,7 +17,7 @@ interface ButtonInputLogListener {
 }
 
 interface RadioGenderClickListener {
-    fun onRadioGenderClick(v: View)
+    fun onRadioGenderClick(v: View, gen: Int, user: User)
 }
 
 interface  RadioClickListener {

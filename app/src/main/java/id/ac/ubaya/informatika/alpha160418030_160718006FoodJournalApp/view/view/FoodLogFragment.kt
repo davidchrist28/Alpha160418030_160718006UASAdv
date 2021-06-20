@@ -40,7 +40,7 @@ class FoodLogFragment : Fragment(), FabClickListener {
 
         viewModel = ViewModelProvider(this).get(LogViewModel::class.java)
         proViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
-        dataBinding.userCurr = User("", "", 1, "", "")
+        dataBinding.userCurr = User("", "", 1, "", "", "")
         dataBinding.fablistener = this
 
         var id = FoodLogFragmentArgs.fromBundle(requireArguments()).id

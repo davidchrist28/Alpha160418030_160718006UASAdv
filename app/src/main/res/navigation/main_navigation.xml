@@ -16,9 +16,6 @@
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
         <argument
-            android:name="goal"
-            app:argType="string" />
-        <argument
             android:name="id"
             app:argType="string" />
         <action

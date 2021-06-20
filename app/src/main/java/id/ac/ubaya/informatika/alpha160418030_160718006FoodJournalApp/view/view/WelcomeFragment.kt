@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.fragment_welcome.view.*
 class WelcomeFragment : Fragment(), ButtonStartClickListener, RadioGenderClickListener, RadioClickListener {
     private lateinit var dataBinding: FragmentWelcomeBinding
     private lateinit var viewModel: ProfileViewModel
-    lateinit var goal: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +30,7 @@ class WelcomeFragment : Fragment(), ButtonStartClickListener, RadioGenderClickLi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dataBinding.user = User("", "", 1, "", "")
+        dataBinding.user = User("", "", 1, "", "", "")
         dataBinding.listener = this
         dataBinding.radiolistener = this
         dataBinding.radiotarget = this
@@ -42,16 +41,16 @@ class WelcomeFragment : Fragment(), ButtonStartClickListener, RadioGenderClickLi
         viewModel.newUser(user, true)
         var id = dataBinding.user?.id.toString()
 
-        val arahin = WelcomeFragmentDirections.actionfoodLogFragment(id, goal)
+        val arahin = WelcomeFragmentDirections.actionfoodLogFragment(id)
         Navigation.findNavController(v).navigate(arahin)
     }
 
-    override fun onRadioClick(v: View) {
-        goal = v.tag.toString()
+    override fun onRadioClick(v: View, user: User) {
+        user.goal = v.tag.toString()
     }
 
-    override fun onRadioGenderClick(v: View, gen: Int, user: User) {
-        user.gender = gen
+    override fun onRadioGenderClick(v: View, user: User) {
+        user.gender = v.tag.toString().toInt()
     }
 
     fun observeViewModel() {

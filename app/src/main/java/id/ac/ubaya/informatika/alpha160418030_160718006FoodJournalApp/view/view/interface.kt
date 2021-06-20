@@ -17,11 +17,11 @@ interface ButtonInputLogListener {
 }
 
 interface RadioGenderClickListener {
-    fun onRadioGenderClick(v: View, gen: Int, user: User)
+    fun onRadioGenderClick(v: View, user: User)
 }
 
 interface  RadioClickListener {
-    fun onRadioClick(v: View)
+    fun onRadioClick(v: View, user: User)
 }
 
 interface FabClickListener {

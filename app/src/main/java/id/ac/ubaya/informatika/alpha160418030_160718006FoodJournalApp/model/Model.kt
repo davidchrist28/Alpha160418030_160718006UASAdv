@@ -14,7 +14,9 @@ data class User (
     @ColumnInfo(name = "height")
     var height: String,
     @ColumnInfo(name = "weight")
-    var weight: String
+    var weight: String,
+    @ColumnInfo(name = "goal")
+    var goal: String,
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

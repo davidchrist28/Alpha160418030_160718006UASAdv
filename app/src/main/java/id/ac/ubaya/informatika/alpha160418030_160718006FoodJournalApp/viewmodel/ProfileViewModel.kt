@@ -21,7 +21,10 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
             var datB = buildDB(getApplication())
             datB.userDao().insertUser(user)
 
-            if (ret) profileLD.value = user
+            if (ret)
+            {
+                profileLD.value = user
+            }
         }
     }
 
@@ -42,7 +45,7 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
     fun updateUser(currUser: User, userNewD: User) {
         launch {
             var datB = buildDB(getApplication())
-            datB.userDao().update(userNewD.name, userNewD.age, userNewD.gender, userNewD.height, userNewD.weight, currUser.id)
+            datB.userDao().update(userNewD.name, userNewD.age, userNewD.gender, userNewD.height, userNewD.weight, userNewD.goal, currUser.id)
         }
     }
 

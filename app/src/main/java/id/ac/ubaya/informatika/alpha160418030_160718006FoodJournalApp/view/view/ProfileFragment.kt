@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -33,14 +34,16 @@ class ProfileFragment : Fragment(), ButtonUpdateProfileListener {
         dataBinding.listener = this
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
-        //var currUserName = ProfileFragmentArgs.fromBundle(requireArguments()).nameUser
-        //viewModel.currUser(currUserName)
+        var currUid = ProfileFragmentArgs.fromBundle(requireArguments()).id
+        viewModel.currUser(currUid)
 
         observeViewModel()
     }
 
     override fun onButtonUpdateProfile(v: View, user: User) {
         viewModel.updateUser(currUser, user)
+        observeViewModel()
+        Toast.makeText(v.context, "User profile updated", Toast.LENGTH_SHORT).show()
     }
 
     fun observeViewModel() {

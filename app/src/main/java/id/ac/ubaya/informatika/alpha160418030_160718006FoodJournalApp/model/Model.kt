@@ -10,7 +10,7 @@ data class User (
     @ColumnInfo(name = "age")
     var age: String,
     @ColumnInfo(name = "gender")
-    var gender: Int = 1,
+    var gender: Int,
     @ColumnInfo(name = "height")
     var height: String,
     @ColumnInfo(name = "weight")
@@ -28,6 +28,8 @@ data class Log (
     var foodName: String,
     @ColumnInfo(name = "calories")
     var calories: String,
+    @ColumnInfo(name = "date")
+    var date: String,
     @ColumnInfo(name = "id_user")
     var id_user: Int
 ) {

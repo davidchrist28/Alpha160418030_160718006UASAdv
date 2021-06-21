@@ -10,13 +10,14 @@ val DB_NAME = "foodjourneydb"
 
 fun buildDB(context: Context): FoodJourneyDatabase {
     val db = Room.databaseBuilder(context, FoodJourneyDatabase::class.java, DB_NAME).addMigrations(
-        MIGRATION_1_2).build()
+        MIGRATION_1_3).build()
 
     return db
 }
 
-val MIGRATION_1_2 = object: Migration(1, 2) {
+val MIGRATION_1_3 = object: Migration(1, 3) {
     override fun migrate(database: SupportSQLiteDatabase) {
-        database.execSQL("ALTER TABLE users ADD COLUMN goal TEXT DEFAULT ''")
+        database.execSQL("ALTER TABLE users ADD COLUMN goal TEXT NOT NULL")
+        database.execSQL("ALTER TABLE foodLogs ADD COLUMN date TEXT NOT NULL")
     }
 }

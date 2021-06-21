@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Entity
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.util.MIGRATION_1_2
+import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.util.MIGRATION_1_3
 
-@Database(entities = arrayOf(User::class, Log::class), version = 2)
+@Database(entities = arrayOf(User::class, Log::class), version = 3)
 abstract class FoodJourneyDatabase: RoomDatabase() {
     abstract fun userDao():UserDao
     abstract fun logDao():LogDao
@@ -21,7 +21,7 @@ abstract class FoodJourneyDatabase: RoomDatabase() {
             context.applicationContext,
             FoodJourneyDatabase::class.java,
             "foodjourneydb"
-        ).addMigrations(MIGRATION_1_2).build()
+        ).addMigrations(MIGRATION_1_3).build()
 
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
             instance ?: buildDatabase(context).also {

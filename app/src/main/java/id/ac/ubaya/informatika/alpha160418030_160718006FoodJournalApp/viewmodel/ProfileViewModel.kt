@@ -21,7 +21,7 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
             var datB = buildDB(getApplication())
             datB.userDao().insertUser(user)
 
-            if (ret)
+            if (ret == true)
             {
                 profileLD.value = user
             }

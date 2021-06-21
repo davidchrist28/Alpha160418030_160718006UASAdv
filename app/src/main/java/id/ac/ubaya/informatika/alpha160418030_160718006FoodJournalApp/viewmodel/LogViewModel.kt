@@ -16,17 +16,17 @@ class LogViewModel(application: Application): AndroidViewModel(application), Cor
     val logLD = MutableLiveData<List<Log>>()
     private var job = Job()
 
-    fun newUser(user: User) {
+    fun addLog(log: Log) {
         launch {
             var datB = buildDB(getApplication())
-            datB.userDao().insertUser(user)
+            datB.logDao().insertLog(log)
         }
     }
 
-    fun fetch(id: String) {
+    fun fetch(uid: String) {
         launch {
             var datB = buildDB(getApplication())
-            logLD.value = datB.logDao().selectLogByUser(id)
+            logLD.value = datB.logDao().selectLogByUser(uid)
         }
     }
 
@@ -35,6 +35,13 @@ class LogViewModel(application: Application): AndroidViewModel(application), Cor
             var datB = buildDB(getApplication())
             var id = user.id.toString()
             logLD.value = datB.logDao().selectLogByUser(id)
+        }
+    }
+
+    fun fetch(uid: String, date: String) {
+        launch {
+            var datB = buildDB(getApplication())
+            logLD.value = datB.logDao().selectLogByDate(uid, date)
         }
     }
 
@@ -49,6 +56,13 @@ class LogViewModel(application: Application): AndroidViewModel(application), Cor
         launch {
             var datB = buildDB(getApplication())
             logLD.value = datB.logDao().selectAllLogs()
+        }
+    }
+
+    fun deleteLog(log: Log) {
+        launch {
+            var datB = buildDB(getApplication())
+            datB.logDao().delete(log)
         }
     }
 

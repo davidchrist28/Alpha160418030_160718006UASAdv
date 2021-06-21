@@ -13,6 +13,9 @@ interface LogDao {
     @Query("SELECT * FROM foodLogs WHERE id_user = :id_user")
     suspend fun selectLogByUser(id_user: String): List<Log>
 
+    @Query("SELECT * FROM foodLogs WHERE id_user = :id_user AND date = :date")
+    suspend fun selectLogByDate(id_user: String, date: String): List<Log>
+
     @Query("SELECT * FROM foodLogs WHERE logId = :id")
     suspend fun selectLog(id: Int): Log
 

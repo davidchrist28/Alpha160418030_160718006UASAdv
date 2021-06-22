@@ -51,7 +51,7 @@ class FoodLogFragment : Fragment(), FabClickListener {
         dataBinding.fablistener = this
         txtDate.setText(formatter.format(Date()))
 
-        var id = FoodLogFragmentArgs.fromBundle(requireArguments()).id
+        var id = FoodLogFragmentArgs .fromBundle(requireArguments()).id
         proViewModel.currUser(id)
         observeProfile()
         viewModel.fetch(id)

@@ -12,6 +12,7 @@ import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.R
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databinding.FragmentReportBinding
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databinding.ReportLayoutBinding
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.Log
+import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.User
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.viewmodel.ReportViewModel
 import kotlinx.android.synthetic.main.fragment_report.*
 import java.text.SimpleDateFormat
@@ -50,12 +51,29 @@ class ReportFragment : Fragment() {
         })
     }
 
-//    fun byDates() {
-//
-//    }
+    fun calculateBMR(userNow: User): Double {
+        var bmr: Double
+        var weight: Double = userNow.weight.toDouble()
+        var height: Double = userNow.height.toDouble()
+        var age: Double = userNow.age.toDouble()
+
+        if (userNow.gender == 1) {
+            bmr = 13.397 * weight + 4.799 * height -  5.677 * age + 88.362
+        } else {
+            bmr = 9.247 * weight + 3.098 * height -  4.330 * age + 447.593
+        }
+
+        if (userNow.goal == "Gain") {
+            bmr += bmr * 0.15
+        } else if (userNow.goal == "Loss") {
+            bmr -= bmr * 0.15
+        }
+
+        return bmr
+    }
 
     fun calculate(logs: List<Log>): String {
-        var totalCal: Int = 0
+        var totalCal = 0
         logs.forEach {
             totalCal += it.calories.toInt()
         }

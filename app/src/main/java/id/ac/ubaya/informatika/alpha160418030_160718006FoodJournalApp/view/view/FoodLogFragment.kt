@@ -116,8 +116,6 @@ class FoodLogFragment : Fragment(), FabClickListener {
             bmr += bmr * 0.15
         } else if (userNow.goal == "Loss") {
             bmr -= bmr * 0.15
-        } else {
-            bmr = bmr
         }
 
         return bmr

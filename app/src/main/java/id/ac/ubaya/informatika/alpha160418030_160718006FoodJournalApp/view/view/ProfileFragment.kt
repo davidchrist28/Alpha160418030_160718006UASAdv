@@ -44,6 +44,7 @@ class ProfileFragment : Fragment(), ButtonUpdateProfileListener {
         viewModel.updateUser(currUser, user)
         observeViewModel()
         Toast.makeText(v.context, "User profile updated", Toast.LENGTH_SHORT).show()
+//        onViewCreated(v, )
     }
 
     fun observeViewModel() {

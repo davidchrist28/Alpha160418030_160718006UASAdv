@@ -87,6 +87,11 @@ class FoodLogFragment : Fragment(), FabClickListener {
         proViewModel.profileLD.observe(viewLifecycleOwner, Observer {
             dataBinding.userCurr = it
             userCurr = it
+            if (it.gender == 1) {
+                txtGender.setText("Male")
+            } else {
+                txtGender.setText("Female")
+            }
             var bmr = calculateBMR(userCurr)
             txtMaxCal.setText(bmr.toString())
         })

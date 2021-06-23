@@ -31,6 +31,6 @@ class ReportAdapter(val reportList: ArrayList<Log>): RecyclerView.Adapter<Report
     override fun onBindViewHolder(holder: ReportViewHolder, position: Int) {
         val currLog = reportList[position]
         holder.view.log = currLog
-
+        holder.view.txtStat.setText("LEMUUUUU")
     }
 }

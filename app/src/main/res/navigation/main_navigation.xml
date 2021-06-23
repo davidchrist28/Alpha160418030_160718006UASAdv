@@ -2,8 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_navigation"
-    app:startDestination="@id/welcomeFragment">
+    android:id="@+id/main_navigation">
 
     <fragment
         android:id="@+id/itemFoodLog"
@@ -18,16 +17,6 @@
         <argument
             android:name="id"
             app:argType="string" />
-        <action
-            android:id="@+id/actionProfileFragment"
-            app:destination="@id/itemProfile"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
-        <action
-            android:id="@+id/actionReportFragment"
-            app:destination="@id/itemReport"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/logMealFragment"
@@ -55,16 +44,5 @@
         <argument
             android:name="id"
             app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/welcomeFragment"
-        android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.WelcomeFragment"
-        android:label="Welcome"
-        tools:layout="@layout/fragment_welcome">
-        <action
-            android:id="@+id/actionfoodLogFragment"
-            app:destination="@id/itemFoodLog"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 </navigation>

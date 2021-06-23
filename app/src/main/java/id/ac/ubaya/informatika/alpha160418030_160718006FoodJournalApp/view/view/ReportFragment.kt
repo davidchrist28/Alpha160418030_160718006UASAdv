@@ -12,7 +12,7 @@ import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.R
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databinding.FragmentReportBinding
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databinding.ReportLayoutBinding
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.Log
-import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.viewmodel.LogViewModel
+import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.viewmodel.ReportViewModel
 import kotlinx.android.synthetic.main.fragment_report.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,7 +20,7 @@ import java.util.*
 class ReportFragment : Fragment() {
     private val formatter = SimpleDateFormat("MM/yyyy")
     private var adapter: ReportAdapter = ReportAdapter(arrayListOf())
-    private lateinit var viewModel: LogViewModel
+    private lateinit var viewModel: ReportViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,11 +31,12 @@ class ReportFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        txtDateR.setText(formatter.format(Date()))
+        val currDate = formatter.format(Date())
+        txtDateR.setText(currDate)
         var uid = ReportFragmentArgs.fromBundle(requireArguments()).id
 
-        viewModel = ViewModelProvider(this).get(LogViewModel::class.java)
-        viewModel.fetch(uid)
+        viewModel = ViewModelProvider(this).get(ReportViewModel::class.java)
+        viewModel.getReport(uid, currDate)
 
         recViewR.layoutManager = LinearLayoutManager(context)
         recViewR.adapter = adapter
@@ -44,7 +45,7 @@ class ReportFragment : Fragment() {
     }
 
     fun observeViewModel() {
-        viewModel.logLD.observe(viewLifecycleOwner, Observer {
+        viewModel.ReportLD.observe(viewLifecycleOwner, Observer {
             adapter.updateList(it)
         })
     }

@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.R
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databinding.FragmentFoodLogBinding
-import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databinding.FragmentWelcomeBinding
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.Log
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.User
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.viewmodel.LogViewModel

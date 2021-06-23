@@ -87,6 +87,11 @@ class FoodLogFragment : Fragment(), FabClickListener {
         proViewModel.profileLD.observe(viewLifecycleOwner, Observer {
             dataBinding.userCurr = it
             userCurr = it
+            if (it.gender == 1) {
+                txtGender.setText("Male")
+            } else {
+                txtGender.setText("Female")
+            }
             var bmr = calculateBMR(userCurr)
             txtMaxCal.setText(bmr.toString())
         })
@@ -116,8 +121,6 @@ class FoodLogFragment : Fragment(), FabClickListener {
             bmr += bmr * 0.15
         } else if (userNow.goal == "Loss") {
             bmr -= bmr * 0.15
-        } else {
-            bmr = bmr
         }
 
         return bmr

@@ -20,8 +20,9 @@ import java.util.*
 
 class ReportFragment : Fragment() {
     private val formatter = SimpleDateFormat("MM/yyyy")
-    private var adapter: ReportAdapter = ReportAdapter(arrayListOf())
+    private var adapter: ReportAdapter = ReportAdapter(arrayListOf(), 0.0)
     private lateinit var viewModel: ReportViewModel
+    var bmr: Double = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,34 +50,5 @@ class ReportFragment : Fragment() {
         viewModel.ReportLD.observe(viewLifecycleOwner, Observer {
             adapter.updateList(it)
         })
-    }
-
-    fun calculateBMR(userNow: User): Double {
-        var bmr: Double
-        var weight: Double = userNow.weight.toDouble()
-        var height: Double = userNow.height.toDouble()
-        var age: Double = userNow.age.toDouble()
-
-        if (userNow.gender == 1) {
-            bmr = 13.397 * weight + 4.799 * height -  5.677 * age + 88.362
-        } else {
-            bmr = 9.247 * weight + 3.098 * height -  4.330 * age + 447.593
-        }
-
-        if (userNow.goal == "Gain") {
-            bmr += bmr * 0.15
-        } else if (userNow.goal == "Loss") {
-            bmr -= bmr * 0.15
-        }
-
-        return bmr
-    }
-
-    fun calculate(logs: List<Log>): String {
-        var totalCal = 0
-        logs.forEach {
-            totalCal += it.calories.toInt()
-        }
-        return totalCal.toString()
     }
 }

@@ -8,13 +8,14 @@ import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.R
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databinding.ReportLayoutBinding
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.Log
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.User
+import kotlinx.android.synthetic.main.fragment_food_log.*
 
-class ReportAdapter(val reportList: ArrayList<Log>): RecyclerView.Adapter<ReportAdapter.ReportViewHolder>() {
+class ReportAdapter(val ReportList: ArrayList<Log>, val bmr: Double): RecyclerView.Adapter<ReportAdapter.ReportViewHolder>() {
     class ReportViewHolder(var view: ReportLayoutBinding): RecyclerView.ViewHolder(view.root)
 
     fun updateList(newList: List<Log>) {
-        reportList.clear()
-        reportList.addAll(newList)
+        ReportList.clear()
+        ReportList.addAll(newList)
         notifyDataSetChanged()
     }
 
@@ -25,12 +26,24 @@ class ReportAdapter(val reportList: ArrayList<Log>): RecyclerView.Adapter<Report
     }
 
     override fun getItemCount(): Int {
-        return reportList.size
+        return ReportList.size
     }
 
     override fun onBindViewHolder(holder: ReportViewHolder, position: Int) {
-        val currLog = reportList[position]
+        val currLog = ReportList[position]
         holder.view.log = currLog
-        holder.view.txtStat.setText("LEMUUUUU")
+
+        var edge: Double = bmr / 2
+        var calNow: Double = ReportList[position].calories.toDouble()
+
+        with(holder.view.txtStat) {
+            if (calNow <= edge) {
+                setText("LOW")
+            } else if (calNow > edge && calNow <= bmr) {
+                setText("NORMAL")
+            } else {
+                setText("EXCEED")
+            }
+        }
     }
 }

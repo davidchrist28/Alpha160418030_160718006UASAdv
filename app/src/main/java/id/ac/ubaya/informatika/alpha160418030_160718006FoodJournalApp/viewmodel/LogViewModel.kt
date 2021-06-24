@@ -14,8 +14,16 @@ import kotlin.coroutines.CoroutineContext
 
 class LogViewModel(application: Application): AndroidViewModel(application), CoroutineScope {
     val logLD = MutableLiveData<List<Log>>()
+    val userLD = MutableLiveData<User>()
     private var job = Job()
 
+    fun getUser(id:Int)
+    {
+        launch {
+            var datB = buildDB(getApplication())
+            userLD.value = datB.userDao().selectSpecUsers(id)
+        }
+    }
     fun addLog(log: Log) {
         launch {
             var datB = buildDB(getApplication())

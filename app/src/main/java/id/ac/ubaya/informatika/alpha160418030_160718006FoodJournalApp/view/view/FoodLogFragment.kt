@@ -28,7 +28,6 @@ import java.util.*
 class FoodLogFragment : Fragment(), FabClickListener {
     private val formatter = SimpleDateFormat("DDDD/MM/dd/yyyy")
     private lateinit var viewModel: LogViewModel
-    private lateinit var proViewModel: ProfileViewModel
     private lateinit var dataBinding: FragmentFoodLogBinding
     private var adapter: FoodLogAdapter = FoodLogAdapter(arrayListOf())
     private lateinit var userCurr: User
@@ -45,20 +44,21 @@ class FoodLogFragment : Fragment(), FabClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(LogViewModel::class.java)
-        proViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
-        dataBinding.userCurr = User("", "", 1, "", "", "")
+//        proViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        dataBinding.userCurr = User("", "0", 1, "0", "0", "Maintain")
         dataBinding.fablistener = this
         txtDate.setText(formatter.format(Date()))
 
         var id = FoodLogFragmentArgs.fromBundle(requireArguments()).id
-        proViewModel.currUser(id)
-        observeProfile()
-        viewModel.fetch(id)
+//        proViewModel.currUser(id)
+//        observeProfile()
 
+        viewModel.getUser(id.toInt())
+        viewModel.fetch(id)
         recView.layoutManager = LinearLayoutManager(context)
         recView.adapter = adapter
 
-        observeLog()
+        observeViewModel()
 
         var calMax: Double = txtMaxCal.text.toString().toDouble()
         var edge: Double = calMax / 2
@@ -79,12 +79,12 @@ class FoodLogFragment : Fragment(), FabClickListener {
     }
 
     fun observeViewModel() {
-        observeProfile()
-        observeLog()
-    }
-
-    fun observeProfile() {
-        proViewModel.profileLD.observe(viewLifecycleOwner, Observer {
+      viewModel.logLD.observe(viewLifecycleOwner, Observer {
+            adapter.updateList(it)
+            var calTotal: Double = calculateCal(it)
+            txtCal.setText(calTotal.toString())
+        })
+        viewModel.userLD.observe(viewLifecycleOwner, Observer {
             dataBinding.userCurr = it
             userCurr = it
             if (it.gender == 1) {
@@ -93,17 +93,10 @@ class FoodLogFragment : Fragment(), FabClickListener {
                 txtGender.setText("Female")
             }
             var bmr = calculateBMR(userCurr)
-            txtMaxCal.setText(bmr.toString())
+            txtMaxCal.text = bmr.toString()
         })
     }
 
-    fun observeLog() {
-        viewModel.logLD.observe(viewLifecycleOwner, Observer {
-            adapter.updateList(it)
-            var calTotal: Double = calculateCal(it)
-            txtCal.setText(calTotal.toString())
-        })
-    }
 
     fun calculateBMR(userNow: User): Double {
         var bmr: Double

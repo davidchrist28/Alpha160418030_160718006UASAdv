@@ -2,7 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_navigation">
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/itemFoodLog">
 
     <fragment
         android:id="@+id/itemFoodLog"
@@ -16,7 +17,8 @@
             app:exitAnim="@android:anim/slide_out_right" />
         <argument
             android:name="id"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/logMealFragment"
@@ -25,7 +27,8 @@
         tools:layout="@layout/fragment_log_meal">
         <argument
             android:name="id"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/itemReport"
@@ -34,7 +37,8 @@
         tools:layout="@layout/fragment_report">
         <argument
             android:name="id"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/itemProfile"
@@ -43,6 +47,7 @@
         tools:layout="@layout/fragment_profile">
         <argument
             android:name="id"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

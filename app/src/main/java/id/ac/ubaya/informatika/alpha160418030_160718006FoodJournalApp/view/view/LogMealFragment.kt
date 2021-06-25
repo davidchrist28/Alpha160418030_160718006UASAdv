@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
@@ -20,7 +21,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 class LogMealFragment : Fragment(), ButtonInputLogListener {
-    private val formatter = SimpleDateFormat("DDDD/MM/dd/yyyy")
+    private val formatter = SimpleDateFormat("dd/MM/yyyy")
     private lateinit var viewModel: LogViewModel
     private lateinit var dataBinding: FragmentLogMealBinding
 
@@ -47,6 +48,7 @@ class LogMealFragment : Fragment(), ButtonInputLogListener {
     override fun onButtonInputLog(v: View, log: Log) {
         viewModel.addLog(log)
         Navigation.findNavController(v).popBackStack()
+        Toast.makeText(v.context, "Don't forget of your target", Toast.LENGTH_SHORT).show()
     }
 
     fun observeViewModel() {

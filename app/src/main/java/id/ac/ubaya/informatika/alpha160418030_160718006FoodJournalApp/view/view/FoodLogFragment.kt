@@ -26,7 +26,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class FoodLogFragment : Fragment(), FabClickListener {
-    private val formatter = SimpleDateFormat("DDDD/MM/dd/yyyy")
+    private val formatter = SimpleDateFormat("dd/MM/yyyy")
     private lateinit var viewModel: LogViewModel
     private lateinit var dataBinding: FragmentFoodLogBinding
     private var adapter: FoodLogAdapter = FoodLogAdapter(arrayListOf())
@@ -86,19 +86,18 @@ class FoodLogFragment : Fragment(), FabClickListener {
             } else {
                 txtGender.setText("Female")
             }
-            var bmr = calculateBMR(userCurr)
+            var bmr = calculateBMR(it)
             calMax = bmr
             txtMaxCal.text = calMax.toString()
         })
-      viewModel.logLD.observe(viewLifecycleOwner, Observer {
-          adapter.updateList(it)
-          var calTotal: Double = calculateCal(it)
-          cal = calTotal
-          txtCal.setText(cal.toString())
-          progsBarCal.progress = cal.toInt()
-      })
 
-
+        viewModel.logLD.observe(viewLifecycleOwner, Observer {
+            adapter.updateList(it)
+            var calTotal: Double = calculateCal(it)
+            cal = String.format("%.2f", calTotal).toDouble()
+            txtCal.setText(cal.toString())
+            progsBarCal.progress = cal.toInt()
+        })
     }
 
 
@@ -119,7 +118,6 @@ class FoodLogFragment : Fragment(), FabClickListener {
         } else if (userNow.goal == "Loss") {
             bmr -= bmr * 0.15
         }
-
         return bmr
     }
 

@@ -31,6 +31,7 @@ class ProfileFragment : Fragment(), ButtonUpdateProfileListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dataBinding.user = User("", "", 1, "", "", "")
+        currUser = User("", "", 1, "", "", "")
         dataBinding.listener = this
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 

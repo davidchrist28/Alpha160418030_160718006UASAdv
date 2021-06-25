@@ -8,6 +8,9 @@ interface UserDao {
     suspend fun insertUser(vararg user: User)
 
     @Query("SELECT * FROM users")
+    suspend fun selectUser(): User
+
+    @Query("SELECT * FROM users")
     suspend fun selectAllUsers(): List<User>
 
     @Query("SELECT * FROM users WHERE id = :id")

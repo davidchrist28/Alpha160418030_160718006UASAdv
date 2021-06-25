@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.Log
+import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.User
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.util.buildDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +14,16 @@ import kotlin.coroutines.CoroutineContext
 
 class ReportViewModel(application: Application): AndroidViewModel(application), CoroutineScope {
     val ReportLD = MutableLiveData<List<Log>>()
+    val UserLD = MutableLiveData<User>()
     private val job = Job()
+
+    fun getUser()
+    {
+        launch {
+            var datB = buildDB(getApplication())
+            UserLD.value = datB.userDao().selectUser()
+        }
+    }
 
     fun getReport(id_user: String, date: String) {
         launch {

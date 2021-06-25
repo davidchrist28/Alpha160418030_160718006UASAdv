@@ -34,9 +34,7 @@ class ProfileFragment : Fragment(), ButtonUpdateProfileListener {
         dataBinding.listener = this
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
-        var currUid = ProfileFragmentArgs.fromBundle(requireArguments()).id
-        viewModel.currUser(currUid)
-
+        viewModel.currUser()
         observeViewModel()
     }
 
@@ -44,7 +42,6 @@ class ProfileFragment : Fragment(), ButtonUpdateProfileListener {
         viewModel.updateUser(currUser, user)
         observeViewModel()
         Toast.makeText(v.context, "User profile updated", Toast.LENGTH_SHORT).show()
-//        onViewCreated(v, )
     }
 
     fun observeViewModel() {

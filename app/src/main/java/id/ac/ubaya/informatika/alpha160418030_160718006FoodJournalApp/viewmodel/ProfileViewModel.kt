@@ -28,6 +28,13 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
         }
     }
 
+    fun currUser() {
+        launch {
+            var datB = buildDB(getApplication())
+            profileLD.value = datB.userDao().selectUser()
+        }
+    }
+
     fun currUser(id: Int) {
         launch {
             var datB = buildDB(getApplication())

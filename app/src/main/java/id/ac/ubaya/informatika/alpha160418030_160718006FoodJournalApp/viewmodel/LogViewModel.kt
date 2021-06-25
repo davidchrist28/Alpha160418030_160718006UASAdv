@@ -17,6 +17,14 @@ class LogViewModel(application: Application): AndroidViewModel(application), Cor
     val userLD = MutableLiveData<User>()
     private var job = Job()
 
+    fun getUser()
+    {
+        launch {
+            var datB = buildDB(getApplication())
+            userLD.value = datB.userDao().selectUser()
+        }
+    }
+
     fun getUser(id:Int)
     {
         launch {
@@ -24,6 +32,7 @@ class LogViewModel(application: Application): AndroidViewModel(application), Cor
             userLD.value = datB.userDao().selectSpecUsers(id)
         }
     }
+
     fun addLog(log: Log) {
         launch {
             var datB = buildDB(getApplication())

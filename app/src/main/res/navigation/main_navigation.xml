@@ -15,10 +15,6 @@
             app:destination="@id/logMealFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
-        <argument
-            android:name="id"
-            app:argType="string"
-            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/logMealFragment"

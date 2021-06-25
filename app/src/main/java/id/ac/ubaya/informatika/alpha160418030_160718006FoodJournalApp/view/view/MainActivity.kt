@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
-    lateinit var userCurr: User
     private lateinit var viewModel: ProfileViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         var height = intent.getStringExtra(WelcomeActivity.height).toString()
         var weight = intent.getStringExtra(WelcomeActivity.weight).toString()
         var goal = intent.getStringExtra(WelcomeActivity.goal).toString()
-        userCurr = User(name, age, gender, height, weight, goal)
+        var userCurr = User(name, age, gender, height, weight, goal)
         viewModel.newUser(userCurr, false)
 
         navController = Navigation.findNavController(this, R.id.hostFragment)

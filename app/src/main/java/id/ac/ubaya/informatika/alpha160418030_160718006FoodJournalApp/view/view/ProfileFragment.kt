@@ -41,7 +41,6 @@ class ProfileFragment : Fragment(), ButtonUpdateProfileListener {
 
     override fun onButtonUpdateProfile(v: View, user: User) {
         viewModel.updateUser(currUser, user)
-        observeViewModel()
         Toast.makeText(v.context, "User profile updated", Toast.LENGTH_SHORT).show()
     }
 

@@ -95,7 +95,7 @@ class FoodLogFragment : Fragment(), FabClickListener {
             adapter.updateList(it)
             var calTotal: Double = calculateCal(it)
             cal = String.format("%.2f", calTotal).toDouble()
-            txtCal.setText(cal.toString())
+            txtCal.text = cal.toString()
             progsBarCal.progress = cal.toInt()
         })
     }

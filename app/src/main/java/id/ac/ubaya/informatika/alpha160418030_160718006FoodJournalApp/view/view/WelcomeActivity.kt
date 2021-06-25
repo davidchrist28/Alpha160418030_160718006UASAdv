@@ -5,13 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.R
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databinding.ActivityWelcomeBinding
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.User
+import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.viewmodel.ProfileViewModel
 
 class WelcomeActivity : AppCompatActivity(), ButtonStartClickListener, RadioGenderClickListener, RadioClickListener {
     private lateinit var dataBinding: ActivityWelcomeBinding
-
+    private lateinit var viewModel: ProfileViewModel
     companion object {
         val name = "jenengku"
         val age = "umurku"
@@ -20,7 +22,6 @@ class WelcomeActivity : AppCompatActivity(), ButtonStartClickListener, RadioGend
         val weight = "bobotku"
         val goal = "karepku"
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
@@ -30,16 +31,15 @@ class WelcomeActivity : AppCompatActivity(), ButtonStartClickListener, RadioGend
         dataBinding.radiolistener = this
         dataBinding.radiotarget = this
 
+
+
+        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+
     }
 
     override fun onButtonStartClick(v: View, user: User) {
+        viewModel.newUser(user, false)
         var intent = Intent(this, MainActivity::class.java)
-        intent.putExtra(name, user.name)
-        intent.putExtra(age, user.age)
-        intent.putExtra(gender, user.gender)
-        intent.putExtra(height, user.height)
-        intent.putExtra(weight, user.weight)
-        intent.putExtra(goal, user.goal)
         startActivity(intent)
 
     }

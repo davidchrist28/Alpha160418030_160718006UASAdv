@@ -47,6 +47,7 @@ class FoodLogFragment : Fragment(), FabClickListener {
 
         viewModel = ViewModelProvider(this).get(LogViewModel::class.java)
         dataBinding.userCurr = User("", "0", 1, "0", "0", "Maintain")
+        userCurr = User("", "0", 1, "0", "0", "Maintain")
         dataBinding.fablistener = this
         txtDate.setText(formatter.format(Date()))
 
@@ -60,7 +61,7 @@ class FoodLogFragment : Fragment(), FabClickListener {
         recView.adapter = adapter
 
         var edge: Double = calMax / 2
-        var calNow: Double = txtCal.text.toString().toDouble()
+        var calNow: Double = cal
 
         if (calNow <= edge) {
             txtStatus.setText("LOW")
@@ -77,14 +78,6 @@ class FoodLogFragment : Fragment(), FabClickListener {
     }
 
     fun observeViewModel() {
-      viewModel.logLD.observe(viewLifecycleOwner, Observer {
-          adapter.updateList(it)
-          var calTotal: Double = calculateCal(it)
-          cal = calTotal
-          txtCal.setText(cal.toString())
-          progsBarCal.progress = cal.toInt()
-      })
-
         viewModel.userLD.observe(viewLifecycleOwner, Observer {
             dataBinding.userCurr = it
             userCurr = it
@@ -97,6 +90,15 @@ class FoodLogFragment : Fragment(), FabClickListener {
             calMax = bmr
             txtMaxCal.text = calMax.toString()
         })
+      viewModel.logLD.observe(viewLifecycleOwner, Observer {
+          adapter.updateList(it)
+          var calTotal: Double = calculateCal(it)
+          cal = calTotal
+          txtCal.setText(cal.toString())
+          progsBarCal.progress = cal.toInt()
+      })
+
+
     }
 
 

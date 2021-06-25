@@ -40,10 +40,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="30dp"
                 android:text="Calory"
                 android:textSize="17sp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtDate" />
 
@@ -121,6 +119,16 @@
                         app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                android:text="Calories"
+                app:layout_constraintStart_toEndOf="@+id/txtCal"
+                app:layout_constraintTop_toBottomOf="@+id/txtDate" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

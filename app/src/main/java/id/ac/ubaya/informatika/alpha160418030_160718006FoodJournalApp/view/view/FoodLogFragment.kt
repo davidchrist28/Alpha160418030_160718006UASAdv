@@ -45,17 +45,17 @@ class FoodLogFragment : Fragment(), FabClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(LogViewModel::class.java)
         dataBinding.userCurr = User("", "0", 1, "0", "0", "Maintain")
         userCurr = User("", "0", 1, "0", "0", "Maintain")
+        viewModel = ViewModelProvider(this).get(LogViewModel::class.java)
         dataBinding.fablistener = this
         txtDate.setText(formatter.format(Date()))
 
         viewModel.getUser()
-        observeViewModel()
+        observeProfile()
         var uid = userCurr.id
         viewModel.fetch(uid.toString())
-        observeViewModel()
+        observeLog()
 
         recView.layoutManager = LinearLayoutManager(context)
         recView.adapter = adapter
@@ -75,9 +75,10 @@ class FoodLogFragment : Fragment(), FabClickListener {
     override fun onFabClick(v: View, user: User) {
         val arahin = FoodLogFragmentDirections.actionLogMealFragment(user.id.toString())
         Navigation.findNavController(v).navigate(arahin)
+        observeLog()
     }
 
-    fun observeViewModel() {
+    fun observeProfile() {
         viewModel.userLD.observe(viewLifecycleOwner, Observer {
             dataBinding.userCurr = it
             userCurr = it
@@ -90,7 +91,9 @@ class FoodLogFragment : Fragment(), FabClickListener {
             calMax = bmr
             txtMaxCal.text = calMax.toString()
         })
+    }
 
+    fun observeLog() {
         viewModel.logLD.observe(viewLifecycleOwner, Observer {
             adapter.updateList(it)
             var calTotal: Double = calculateCal(it)

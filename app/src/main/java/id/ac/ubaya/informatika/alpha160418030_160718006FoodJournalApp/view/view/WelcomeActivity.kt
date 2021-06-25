@@ -19,7 +19,7 @@ class WelcomeActivity : AppCompatActivity(), ButtonStartClickListener, RadioGend
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_welcome)
-        dataBinding.user = User("", "0", 1, "0", "0", "Maintain")
+        dataBinding.user = User("", "", 1, "", "", "")
         dataBinding.listener = this
         dataBinding.radiolistener = this
         dataBinding.radiotarget = this

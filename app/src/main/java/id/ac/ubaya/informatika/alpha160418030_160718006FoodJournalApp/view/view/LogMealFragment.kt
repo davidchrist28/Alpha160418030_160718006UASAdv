@@ -39,7 +39,7 @@ class LogMealFragment : Fragment(), ButtonInputLogListener {
         var uid = LogMealFragmentArgs.fromBundle(requireArguments()).id.toInt()
         var dateNow = formatter.format(Date()).toString()
         txtDate.setText(dateNow)
-        dataBinding.log = Log("", "0", dateNow, uid)
+        dataBinding.log = Log("", "", dateNow, uid)
         dataBinding.listener = this
         viewModel.fetch(uid.toString())
 

@@ -37,6 +37,7 @@ class LogViewModel(application: Application): AndroidViewModel(application), Cor
         launch {
             var datB = buildDB(getApplication())
             datB.logDao().insertLog(log)
+            refresh()
         }
     }
 
@@ -73,6 +74,13 @@ class LogViewModel(application: Application): AndroidViewModel(application), Cor
         launch {
             var datB = buildDB(getApplication())
             logLD.value = datB.logDao().selectAllLogs()
+        }
+    }
+
+    fun refresh(uid: String) {
+        launch {
+            var datB = buildDB(getApplication())
+            logLD.value = datB.logDao().selectLogByUser(uid)
         }
     }
 

@@ -33,6 +33,20 @@ class LogViewModel(application: Application): AndroidViewModel(application), Cor
         }
     }
 
+    fun refresh() {
+        launch {
+            var datB = buildDB(getApplication())
+            logLD.value = datB.logDao().selectAllLogs()
+        }
+    }
+
+    fun refresh(uid: String) {
+        launch {
+            var datB = buildDB(getApplication())
+            logLD.value = datB.logDao().selectLogByUser(uid)
+        }
+    }
+
     fun addLog(log: Log) {
         launch {
             var datB = buildDB(getApplication())
@@ -67,20 +81,6 @@ class LogViewModel(application: Application): AndroidViewModel(application), Cor
         launch {
             var datB = buildDB(getApplication())
             logLD.value = listOf(datB.logDao().selectLog(log_id))
-        }
-    }
-
-    fun refresh() {
-        launch {
-            var datB = buildDB(getApplication())
-            logLD.value = datB.logDao().selectAllLogs()
-        }
-    }
-
-    fun refresh(uid: String) {
-        launch {
-            var datB = buildDB(getApplication())
-            logLD.value = datB.logDao().selectLogByUser(uid)
         }
     }
 

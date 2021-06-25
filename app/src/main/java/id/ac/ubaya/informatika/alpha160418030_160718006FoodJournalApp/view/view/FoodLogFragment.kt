@@ -48,6 +48,7 @@ class FoodLogFragment : Fragment(), FabClickListener {
         dataBinding.userCurr = User("", "0", 1, "0", "0", "Maintain")
         userCurr = User("", "0", 1, "0", "0", "Maintain")
         viewModel = ViewModelProvider(this).get(LogViewModel::class.java)
+        viewModel.refresh()
         dataBinding.fablistener = this
         txtDate.setText(formatter.format(Date()))
 

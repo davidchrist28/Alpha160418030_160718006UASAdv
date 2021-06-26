@@ -1,9 +1,11 @@
 package id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -30,9 +32,16 @@ class WelcomeActivity : AppCompatActivity(), ButtonStartClickListener, RadioGend
     }
 
     override fun onButtonStartClick(v: View, user: User) {
-        viewModel.newUser(user, false)
-        var intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        val valid = AlertDialog.Builder(this)
+        valid.setTitle("Validate Input")
+        valid.setMessage("Please check and re-check your following inputs: \n Name: "+user.name+" \n Age: "+user.age+" \n Gender: "+user.gender+" \n Height: "+user.height+" \n Weight: "+user.weight+" \n Your Goal: "+user.goal)
+        valid.setPositiveButton("Next", DialogInterface.OnClickListener{_, _->
+            viewModel.newUser(user, false)
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        })
+        valid.setNegativeButton("Cancel", DialogInterface.OnClickListener{_, _->})
+        valid.show()
     }
 
     override fun onRadioGenderClick(v: View, user: User) {

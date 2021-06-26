@@ -26,7 +26,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class FoodLogFragment : Fragment(), FabClickListener {
-    private val formatter = SimpleDateFormat("dd/MM/yyyy")
+    private val formatter = SimpleDateFormat("EEEE, dd/MM/yyyy")
     private lateinit var viewModel: LogViewModel
     private lateinit var dataBinding: FragmentFoodLogBinding
     private var adapter: FoodLogAdapter = FoodLogAdapter(arrayListOf())
@@ -76,7 +76,6 @@ class FoodLogFragment : Fragment(), FabClickListener {
     override fun onFabClick(v: View, user: User) {
         val arahin = FoodLogFragmentDirections.actionLogMealFragment(user.id.toString())
         Navigation.findNavController(v).navigate(arahin)
-        observeLog()
     }
 
     fun observeProfile() {
@@ -91,6 +90,7 @@ class FoodLogFragment : Fragment(), FabClickListener {
             var bmr = calculateBMR(it)
             calMax = bmr
             txtMaxCal.text = calMax.toString()
+            progsBarCal.max = calMax.toInt()
         })
     }
 

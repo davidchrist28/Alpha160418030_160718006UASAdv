@@ -14,7 +14,7 @@ import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databindin
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.User
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.viewmodel.ProfileViewModel
 
-class ProfileFragment : Fragment(), ButtonUpdateProfileListener {
+class ProfileFragment : Fragment(), ButtonUpdateProfileListener, RadioGenderClickListener {
     private lateinit var dataBinding: FragmentProfileBinding
     private lateinit var viewModel: ProfileViewModel
     private lateinit var currUser: User
@@ -33,6 +33,7 @@ class ProfileFragment : Fragment(), ButtonUpdateProfileListener {
         dataBinding.user = User("", "", 1, "", "", "")
         currUser = User("", "", 1, "", "", "")
         dataBinding.listener = this
+        dataBinding.radiolistener = this
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         viewModel.currUser()
@@ -49,5 +50,9 @@ class ProfileFragment : Fragment(), ButtonUpdateProfileListener {
             dataBinding.user = it
             currUser = it
         })
+    }
+
+    override fun onRadioGenderClick(v: View, user: User) {
+        user.gender = v.tag.toString().toInt()
     }
 }

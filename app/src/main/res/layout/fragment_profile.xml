@@ -5,6 +5,7 @@
     <data>
         <variable name="user" type="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.User" />
         <variable name="listener" type="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.ButtonUpdateProfileListener" />
+        <variable name="radiolistener"  type="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.RadioGenderClickListener" />
     </data>
 <FrameLayout
     android:layout_width="match_parent"
@@ -72,7 +73,7 @@
                     android:id="@+id/txtAgeP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{user.age}" />
+                    android:text="@={user.age}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -109,7 +110,7 @@
                     android:id="@+id/txtWeightP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{user.weight}" />
+                    android:text="@={user.weight}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -137,7 +138,7 @@
                     android:id="@+id/txtHeightP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{user.height}" />
+                    android:text="@={user.height}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -172,6 +173,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checked="@{user.gender==1?true:false}"
+                    android:onClick="@{(view) -> radiolistener.onRadioGenderClick(view, user)}"
                     android:tag="1"
                     android:text="@string/male" />
 
@@ -180,6 +182,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checked="@{user.gender==2?true:false}"
+                    android:onClick="@{(view) -> radiolistener.onRadioGenderClick(view, user)}"
                     android:tag="2"
                     android:text="@string/female" />
             </RadioGroup>

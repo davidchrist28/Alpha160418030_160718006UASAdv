@@ -48,7 +48,7 @@ class FoodLogFragment : Fragment(), FabClickListener {
         dataBinding.userCurr = User("", "0", 1, "0", "0", "Maintain")
         userCurr = User("", "0", 1, "0", "0", "Maintain")
         viewModel = ViewModelProvider(this).get(LogViewModel::class.java)
-        viewModel.refresh()
+
         dataBinding.fablistener = this
         txtDate.setText(formatter.format(Date()))
 
@@ -61,6 +61,8 @@ class FoodLogFragment : Fragment(), FabClickListener {
         recView.layoutManager = LinearLayoutManager(context)
         recView.adapter = adapter
 
+
+
         var edge: Double = calMax / 2
         var calNow: Double = cal
 
@@ -71,6 +73,15 @@ class FoodLogFragment : Fragment(), FabClickListener {
         } else {
             txtStatus.setText("EXCEED")
         }
+        viewModel.refresh()
+        if (calNow <= edge) {
+            txtStatus.setText("LOW")
+        } else if (calNow > edge && calNow <= calMax) {
+            txtStatus.setText("NORMAL")
+        } else {
+            txtStatus.setText("EXCEED")
+        }
+
     }
 
     override fun onFabClick(v: View, user: User) {
@@ -89,7 +100,7 @@ class FoodLogFragment : Fragment(), FabClickListener {
             }
             var bmr = calculateBMR(it)
             calMax = bmr
-            txtMaxCal.text = calMax.toString()
+            txtMaxCal.text = String.format("%.2f", calMax)
             progsBarCal.max = calMax.toInt()
         })
     }

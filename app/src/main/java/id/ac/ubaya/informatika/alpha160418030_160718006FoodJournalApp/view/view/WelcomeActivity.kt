@@ -39,6 +39,7 @@ class WelcomeActivity : AppCompatActivity(), ButtonStartClickListener, RadioGend
             viewModel.newUser(user, false)
             var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+
         })
         valid.setNegativeButton("Cancel", DialogInterface.OnClickListener{_, _->})
         valid.show()

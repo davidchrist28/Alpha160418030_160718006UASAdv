@@ -1,5 +1,8 @@
 package id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view
 
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -41,8 +44,15 @@ class ProfileFragment : Fragment(), ButtonUpdateProfileListener, RadioGenderClic
     }
 
     override fun onButtonUpdateProfile(v: View, user: User) {
-        viewModel.updateUser(currUser, user)
-        Toast.makeText(v.context, "User profile updated", Toast.LENGTH_SHORT).show()
+        val valid = AlertDialog.Builder(activity)
+        valid.setTitle("Validate Input")
+        valid.setMessage("Please check and re-check your following inputs: \n Name: "+user.name+" \n Age: "+user.age+" \n Gender: "+user.gender+" \n Height: "+user.height+" \n Weight: "+user.weight+" \n Your Goal: "+user.goal)
+        valid.setPositiveButton("Next", DialogInterface.OnClickListener{ _, _->
+            viewModel.updateUser(currUser, user)
+            Toast.makeText(v.context, "User profile updated", Toast.LENGTH_SHORT).show()
+        })
+        valid.setNegativeButton("Cancel", DialogInterface.OnClickListener{ _, _->})
+        valid.show()
     }
 
     fun observeViewModel() {

@@ -1,5 +1,7 @@
 package id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -47,9 +49,16 @@ class LogMealFragment : Fragment(), ButtonInputLogListener {
     }
 
     override fun onButtonInputLog(v: View, log: Log) {
-        viewModel.addLog(log)
-        Navigation.findNavController(v).popBackStack()
-        Toast.makeText(v.context, "Don't forget of your target", Toast.LENGTH_SHORT).show()
+        val valid = AlertDialog.Builder(activity)
+        valid.setTitle("Validate Input")
+        valid.setMessage("Please check and re-check your following inputs: \n Meal: "+log.foodName+" \n Calories(estimated): "+log.calories+" cal")
+        valid.setPositiveButton("Next", DialogInterface.OnClickListener{ _, _->
+            viewModel.addLog(log)
+            Navigation.findNavController(v).popBackStack()
+            Toast.makeText(v.context, "Don't forget of your target", Toast.LENGTH_SHORT).show()
+        })
+        valid.setNegativeButton("Cancel", DialogInterface.OnClickListener{ _, _->})
+        valid.show()
     }
 
     fun observeViewModel() {

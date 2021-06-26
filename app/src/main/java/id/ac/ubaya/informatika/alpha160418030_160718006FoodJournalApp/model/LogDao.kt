@@ -22,6 +22,9 @@ interface LogDao {
     @Query("UPDATE foodLogs SET foodName = :fname, calories = :calories where logId = :id")
     suspend fun update(fname:String, calories:Int, id:Int)
 
+    @Query("SELECT sum(calories) AS calories FROM foodLogs WHERE id_user = :id_user AND strftime('%m',date) = strftime('%m',:date)")
+    suspend fun sumCalories(id_user: String, date: String): Double
+
     @Delete
     suspend fun delete(log: Log)
 }

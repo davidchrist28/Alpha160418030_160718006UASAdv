@@ -25,25 +25,18 @@
             android:name="id"
             app:argType="string"
             android:defaultValue="0" />
+        <argument
+            android:name="bmr"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/itemReport"
         android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.ReportFragment"
         android:label="Meal Report"
-        tools:layout="@layout/fragment_report">
-        <argument
-            android:name="id"
-            app:argType="string"
-            android:defaultValue="0" />
-    </fragment>
+        tools:layout="@layout/fragment_report"/>
     <fragment
         android:id="@+id/itemProfile"
         android:name="id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.view.view.ProfileFragment"
         android:label="Your Profile"
-        tools:layout="@layout/fragment_profile">
-        <argument
-            android:name="id"
-            app:argType="string"
-            android:defaultValue="0" />
-    </fragment>
+        tools:layout="@layout/fragment_profile"/>
 </navigation>

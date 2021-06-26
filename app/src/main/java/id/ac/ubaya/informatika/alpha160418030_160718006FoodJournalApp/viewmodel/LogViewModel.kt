@@ -10,6 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.util.*
 import kotlin.coroutines.CoroutineContext
 
 class LogViewModel(application: Application): AndroidViewModel(application), CoroutineScope {
@@ -88,6 +89,16 @@ class LogViewModel(application: Application): AndroidViewModel(application), Cor
         launch {
             var datB = buildDB(getApplication())
             datB.logDao().delete(log)
+        }
+    }
+
+    fun calculateCalories(uid: String, date: String) {
+        launch {
+            var datB = buildDB(getApplication())
+            var cal = datB.logDao().sumCalories(uid, date)
+            var pseudo: List<Log> = listOf()
+            pseudo += Log("", cal.toString(), date, uid.toInt())
+            logLD.value = pseudo
         }
     }
 

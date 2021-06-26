@@ -53,10 +53,10 @@ class FoodLogFragment : Fragment(), FabClickListener {
         txtDate.setText(formatter.format(Date()))
 
         viewModel.getUser()
-        observeProfile()
+        observeViewModel()
         var uid = userCurr.id
         viewModel.fetch(uid.toString())
-        observeLog()
+        observeViewModel()
 
         recView.layoutManager = LinearLayoutManager(context)
         recView.adapter = adapter
@@ -70,15 +70,14 @@ class FoodLogFragment : Fragment(), FabClickListener {
         } else {
             txtStatus.setText("EXCEED")
         }
-
     }
 
     override fun onFabClick(v: View, user: User) {
-        val arahin = FoodLogFragmentDirections.actionLogMealFragment(user.id.toString())
+        val arahin = FoodLogFragmentDirections.actionLogMealFragment(user.id.toString(), calMax.toString())
         Navigation.findNavController(v).navigate(arahin)
     }
 
-    fun observeProfile() {
+    fun observeViewModel() {
         viewModel.userLD.observe(viewLifecycleOwner, Observer {
             dataBinding.userCurr = it
             userCurr = it
@@ -93,9 +92,7 @@ class FoodLogFragment : Fragment(), FabClickListener {
             txtMaxCal.text = String.format("%.2f", calMax)
             progsBarCal.max = calMax.toInt()
         })
-    }
 
-    fun observeLog() {
         viewModel.logLD.observe(viewLifecycleOwner, Observer {
             adapter.updateList(it)
             var calTotal: Double = calculateCal(it)
@@ -104,7 +101,6 @@ class FoodLogFragment : Fragment(), FabClickListener {
             progsBarCal.progress = cal.toInt()
         })
     }
-
 
     fun calculateBMR(userNow: User): Double {
         var bmr: Double

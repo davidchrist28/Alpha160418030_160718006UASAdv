@@ -26,6 +26,7 @@ class LogMealFragment : Fragment(), ButtonInputLogListener {
     private val formatter = SimpleDateFormat("dd/MM/yyyy")
     private lateinit var viewModel: LogViewModel
     private lateinit var dataBinding: FragmentLogMealBinding
+    var bmr: Double = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +40,7 @@ class LogMealFragment : Fragment(), ButtonInputLogListener {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(LogViewModel::class.java)
         var uid = LogMealFragmentArgs.fromBundle(requireArguments()).id.toInt()
+        bmr = LogMealFragmentArgs.fromBundle(requireArguments()).bmr.toDouble()
         var dateNow = formatter.format(Date()).toString()
         txtDate.setText(dateNow)
         dataBinding.log = Log("", "", dateNow, uid)
@@ -51,7 +53,7 @@ class LogMealFragment : Fragment(), ButtonInputLogListener {
     override fun onButtonInputLog(v: View, log: Log) {
         val valid = AlertDialog.Builder(activity)
         valid.setTitle("Validate Input")
-        valid.setMessage("Please check and re-check your following inputs: \n Meal: "+log.foodName+" \n Calories(estimated): "+log.calories+" cal")
+        valid.setMessage("Please check and re-check your following inputs: \n \n Meal: "+log.foodName+" \n Calories(estimated): "+log.calories+" cal")
         valid.setPositiveButton("Next", DialogInterface.OnClickListener{ _, _->
             viewModel.addLog(log)
             Navigation.findNavController(v).popBackStack()
@@ -64,15 +66,17 @@ class LogMealFragment : Fragment(), ButtonInputLogListener {
     fun observeViewModel() {
         viewModel.logLD.observe(viewLifecycleOwner, Observer {
             var cal = calculate(it)
-            txtCal.setText(cal)
+            txtCal.text = cal.toString()
+            var rem = bmr - cal
+            txtRemain.text = rem.toString()
         })
     }
 
-    fun calculate(logs: List<Log>): String {
-        var totalCal: Int = 0
+    fun calculate(logs: List<Log>): Double {
+        var totalCal: Double = 0.0
         logs.forEach {
-            totalCal += it.calories.toInt()
+            totalCal += it.calories.toDouble()
         }
-        return totalCal.toString()
+        return totalCal
     }
 }

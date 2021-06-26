@@ -61,22 +61,11 @@ class FoodLogFragment : Fragment(), FabClickListener {
         recView.layoutManager = LinearLayoutManager(context)
         recView.adapter = adapter
 
-
-
         var edge: Double = calMax / 2
-        var calNow: Double = cal
-
-        if (calNow <= edge) {
-            txtStatus.setText("LOW")
-        } else if (calNow > edge && calNow <= calMax) {
-            txtStatus.setText("NORMAL")
-        } else {
-            txtStatus.setText("EXCEED")
-        }
         viewModel.refresh()
-        if (calNow <= edge) {
+        if (cal <= edge) {
             txtStatus.setText("LOW")
-        } else if (calNow > edge && calNow <= calMax) {
+        } else if (cal > edge && cal <= calMax) {
             txtStatus.setText("NORMAL")
         } else {
             txtStatus.setText("EXCEED")
@@ -98,6 +87,7 @@ class FoodLogFragment : Fragment(), FabClickListener {
             } else {
                 txtGender.setText("Female")
             }
+
             var bmr = calculateBMR(it)
             calMax = bmr
             txtMaxCal.text = String.format("%.2f", calMax)

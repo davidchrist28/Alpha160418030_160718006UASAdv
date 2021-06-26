@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.R
+import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databinding.FragmentFoodLogBinding
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databinding.FragmentReportBinding
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databinding.ReportLayoutBinding
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.Log
@@ -25,12 +27,14 @@ class ReportFragment : Fragment() {
     private lateinit var adapter: ReportAdapter
     private lateinit var viewModel: ReportViewModel
     private lateinit var currUser: User
+    private lateinit var dataBinding: FragmentReportBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_report, container, false)
+        dataBinding = DataBindingUtil.inflate<FragmentReportBinding>(inflater, R.layout.fragment_report, container, false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

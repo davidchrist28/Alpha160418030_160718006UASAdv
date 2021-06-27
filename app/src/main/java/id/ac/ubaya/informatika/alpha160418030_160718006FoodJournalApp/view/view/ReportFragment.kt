@@ -24,6 +24,7 @@ class ReportFragment : Fragment() {
     private lateinit var adapter: ReportAdapter
     private lateinit var viewModel: ReportViewModel
     private lateinit var currUser: User
+    var bmr:Double = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,16 +45,18 @@ class ReportFragment : Fragment() {
         viewModel.getUser()
         var uid = currUser.id
         viewModel.getReport(uid.toString(), currDate)
-        var bmr = calculateBMR(currUser)
+
         adapter = ReportAdapter(arrayListOf(), bmr)
-        observeViewModel()
+
         recViewR.layoutManager = LinearLayoutManager(context)
         recViewR.adapter = adapter
+        observeViewModel()
     }
 
     fun observeViewModel() {
         viewModel.UserLD.observe(viewLifecycleOwner, Observer {
             currUser = it
+            bmr = calculateBMR(it)
         })
 
         viewModel.ReportLD.observe(viewLifecycleOwner, Observer {

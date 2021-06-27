@@ -58,9 +58,8 @@ class FoodLogFragment : Fragment(), FabClickListener {
 
         recView.layoutManager = LinearLayoutManager(context)
         recView.adapter = adapter
+
         observeViewModel()
-
-
     }
 
     override fun onFabClick(v: View, user: User) {

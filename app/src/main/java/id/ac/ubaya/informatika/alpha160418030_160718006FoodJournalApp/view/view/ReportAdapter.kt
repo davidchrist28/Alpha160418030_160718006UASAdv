@@ -9,13 +9,15 @@ import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databindin
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.Log
 import kotlinx.android.synthetic.main.fragment_food_log.*
 
-class ReportAdapter(val ReportList: ArrayList<Log>, val bmr: Double): RecyclerView.Adapter<ReportAdapter.ReportViewHolder>() {
+class ReportAdapter(val ReportList: ArrayList<Log>): RecyclerView.Adapter<ReportAdapter.ReportViewHolder>() {
     class ReportViewHolder(var view: ReportLayoutBinding): RecyclerView.ViewHolder(view.root)
+    private var bmr: Double = 0.0
 
-    fun updateList(newList: List<Log>) {
+    fun updateList(newList: List<Log>, bmrH: Double) {
         ReportList.clear()
         ReportList.addAll(newList)
         notifyDataSetChanged()
+        bmr = bmrH
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReportViewHolder {
@@ -43,6 +45,5 @@ class ReportAdapter(val ReportList: ArrayList<Log>, val bmr: Double): RecyclerVi
                 setText("EXCEED")
             }
         }
-
     }
 }

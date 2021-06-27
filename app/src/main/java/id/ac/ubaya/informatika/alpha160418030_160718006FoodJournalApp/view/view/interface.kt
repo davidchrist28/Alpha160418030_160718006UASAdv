@@ -27,3 +27,7 @@ interface  RadioClickListener {
 interface FabClickListener {
     fun onFabClick(v: View, user: User)
 }
+
+interface LoadRecViewListener {
+    fun onLoadRecView(v: View, Logs: List<Log>)
+}

@@ -21,7 +21,7 @@ import kotlin.collections.ArrayList
 
 class ReportFragment : Fragment() {
     private val formatter = SimpleDateFormat("MM/yyyy")
-    private lateinit var adapter: ReportAdapter
+    private var adapter: ReportAdapter =  ReportAdapter(arrayListOf())
     private lateinit var viewModel: ReportViewModel
     private lateinit var currUser: User
     var bmr:Double = 0.0
@@ -36,7 +36,6 @@ class ReportFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val currDate = formatter.format(Date())
         currUser = User("", "0", 1, "0", "0", "Maintain")
         txtDateR.setText(currDate)
@@ -46,10 +45,9 @@ class ReportFragment : Fragment() {
         var uid = currUser.id
         viewModel.getReport(uid.toString(), currDate)
 
-        adapter = ReportAdapter(arrayListOf(), bmr)
+        recViewReport.layoutManager = LinearLayoutManager(context)
+        recViewReport.adapter = adapter
 
-        recViewR.layoutManager = LinearLayoutManager(context)
-        recViewR.adapter = adapter
         observeViewModel()
     }
 
@@ -60,7 +58,7 @@ class ReportFragment : Fragment() {
         })
 
         viewModel.ReportLD.observe(viewLifecycleOwner, Observer {
-            adapter.updateList(it)
+            adapter.updateList(it, bmr)
         })
     }
 

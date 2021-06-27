@@ -60,15 +60,7 @@ class FoodLogFragment : Fragment(), FabClickListener {
         recView.adapter = adapter
         observeViewModel()
 
-        var edge: Double = calMax / 2
-        viewModel.refresh()
-        if (cal <= edge) {
-            txtStatus.setText("LOW")
-        } else if (cal > edge && cal <= calMax) {
-            txtStatus.setText("NORMAL")
-        } else if (cal > calMax){
-            txtStatus.setText("EXCEED")
-        }
+
     }
 
     override fun onFabClick(v: View, user: User) {
@@ -98,6 +90,16 @@ class FoodLogFragment : Fragment(), FabClickListener {
             cal = String.format("%.2f", calTotal).toDouble()
             txtCal.text = cal.toString()
             progsBarCal.progress = cal.toInt()
+
+            var edge: Double = calMax / 2
+            viewModel.refresh()
+            if (cal <= edge) {
+                txtStatus.setText("LOW")
+            } else if (cal > edge && cal <= calMax) {
+                txtStatus.setText("NORMAL")
+            } else if (cal > calMax){
+                txtStatus.setText("EXCEED")
+            }
         })
     }
 

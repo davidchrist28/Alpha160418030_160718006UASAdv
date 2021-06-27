@@ -53,13 +53,12 @@ class FoodLogFragment : Fragment(), FabClickListener {
         txtDate.setText(formatter.format(Date()))
 
         viewModel.getUser()
-        observeViewModel()
         var uid = userCurr.id
         viewModel.fetch(uid.toString())
-        observeViewModel()
 
         recView.layoutManager = LinearLayoutManager(context)
         recView.adapter = adapter
+        observeViewModel()
 
         var edge: Double = calMax / 2
         viewModel.refresh()
@@ -67,7 +66,7 @@ class FoodLogFragment : Fragment(), FabClickListener {
             txtStatus.setText("LOW")
         } else if (cal > edge && cal <= calMax) {
             txtStatus.setText("NORMAL")
-        } else {
+        } else if (cal > calMax){
             txtStatus.setText("EXCEED")
         }
     }

@@ -43,5 +43,6 @@ class ReportAdapter(val ReportList: ArrayList<Log>, val bmr: Double): RecyclerVi
                 setText("EXCEED")
             }
         }
+
     }
 }

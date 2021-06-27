@@ -34,22 +34,19 @@ class ReportFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        adapter = ReportAdapter(arrayListOf(), bmr)
         val currDate = formatter.format(Date())
         currUser = User("", "0", 1, "0", "0", "Maintain")
         txtDateR.setText(currDate)
 
         viewModel = ViewModelProvider(this).get(ReportViewModel::class.java)
         viewModel.getUser()
-        observeViewModel()
         var uid = currUser.id
         viewModel.getReport(uid.toString(), currDate)
         var bmr = calculateBMR(currUser)
-
-        adapter = ReportAdapter(arrayListOf(), bmr)
+        observeViewModel()
         recViewR.layoutManager = LinearLayoutManager(context)
         recViewR.adapter = adapter
-
-        observeViewModel()
     }
 
     fun observeViewModel() {

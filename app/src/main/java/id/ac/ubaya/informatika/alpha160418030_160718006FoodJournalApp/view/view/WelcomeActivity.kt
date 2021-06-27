@@ -58,6 +58,7 @@ class WelcomeActivity : AppCompatActivity(), ButtonStartClickListener, RadioGend
             if (it != null) {
                 var intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+                finish()
             }
         })
     }

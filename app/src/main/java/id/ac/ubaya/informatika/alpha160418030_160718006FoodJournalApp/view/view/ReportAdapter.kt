@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.R
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.databinding.ReportLayoutBinding
 import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.Log
-import id.ac.ubaya.informatika.alpha160418030_160718006FoodJournalApp.model.User
 import kotlinx.android.synthetic.main.fragment_food_log.*
 
 class ReportAdapter(val ReportList: ArrayList<Log>, val bmr: Double): RecyclerView.Adapter<ReportAdapter.ReportViewHolder>() {
@@ -30,8 +29,7 @@ class ReportAdapter(val ReportList: ArrayList<Log>, val bmr: Double): RecyclerVi
     }
 
     override fun onBindViewHolder(holder: ReportViewHolder, position: Int) {
-        val currLog = ReportList[position]
-        holder.view.log = currLog
+        holder.view.log = ReportList[position]
 
         var edge: Double = bmr / 2
         var calNow: Double = ReportList[position].calories.toDouble()

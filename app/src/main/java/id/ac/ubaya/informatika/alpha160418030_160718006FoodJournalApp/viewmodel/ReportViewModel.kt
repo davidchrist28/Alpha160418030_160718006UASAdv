@@ -25,10 +25,10 @@ class ReportViewModel(application: Application): AndroidViewModel(application), 
         }
     }
 
-    fun getReport(id_user: String, date: String) {
+    fun getReport(id_user: String) {
         launch {
             var datB = buildDB(getApplication())
-            ReportLD.value = datB.logDao().selectLogByDate(id_user, date)
+            ReportLD.value = datB.logDao().selectLogByDate(id_user)
         }
     }
 

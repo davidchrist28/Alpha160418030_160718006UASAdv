@@ -71,13 +71,6 @@ class LogViewModel(application: Application): AndroidViewModel(application), Cor
         }
     }
 
-    fun fetch(uid: String, date: String) {
-        launch {
-            var datB = buildDB(getApplication())
-            logLD.value = datB.logDao().selectLogByDate(uid, date)
-        }
-    }
-
     fun selectSpecific(log_id: Int) {
         launch {
             var datB = buildDB(getApplication())

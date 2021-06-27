@@ -68,7 +68,7 @@ class LogMealFragment : Fragment(), ButtonInputLogListener {
             var cal = calculate(it)
             txtCal.text = cal.toString()
             var rem = bmr - cal
-            txtRemain.text = rem.toString()
+            txtRemain.text = String.format("%.2f", rem).toString()
         })
     }
 

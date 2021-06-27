@@ -46,7 +46,7 @@ class ProfileFragment : Fragment(), ButtonUpdateProfileListener, RadioGenderClic
     override fun onButtonUpdateProfile(v: View, user: User) {
         val valid = AlertDialog.Builder(activity)
         valid.setTitle("Validate Input")
-        valid.setMessage("Please check and re-check your following inputs: \n Name: "+user.name+" \n Age: "+user.age+" \n Gender: "+user.gender+" \n Height: "+user.height+" \n Weight: "+user.weight+" \n Your Goal: "+user.goal)
+        valid.setMessage("Please check and re-check your following inputs: \n \n Name: "+user.name+" \n Age: "+user.age+" \n Gender: "+user.gender+" \n Height: "+user.height+" \n Weight: "+user.weight+" \n Your Goal: "+user.goal)
         valid.setPositiveButton("Next", DialogInterface.OnClickListener{ _, _->
             viewModel.updateUser(currUser, user)
             Toast.makeText(v.context, "User profile updated", Toast.LENGTH_SHORT).show()

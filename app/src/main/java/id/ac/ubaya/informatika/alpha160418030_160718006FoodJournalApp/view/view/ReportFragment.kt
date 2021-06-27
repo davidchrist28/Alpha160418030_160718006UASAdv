@@ -47,7 +47,7 @@ class ReportFragment : Fragment() {
         viewModel.getUser()
         observeViewModel()
         var uid = currUser.id
-        viewModel.getReport(uid.toString(), currDate)
+        viewModel.getReport(uid.toString())
         var bmr = calculateBMR(currUser)
 
         adapter = ReportAdapter(arrayListOf(), bmr)

@@ -34,7 +34,7 @@ class WelcomeActivity : AppCompatActivity(), ButtonStartClickListener, RadioGend
     override fun onButtonStartClick(v: View, user: User) {
         val valid = AlertDialog.Builder(this)
         valid.setTitle("Validate Input")
-        valid.setMessage("Please check and re-check your following inputs: \n Name: "+user.name+" \n Age: "+user.age+" \n Gender: "+user.gender+" \n Height: "+user.height+" \n Weight: "+user.weight+" \n Your Goal: "+user.goal)
+        valid.setMessage("Please check and re-check your following inputs: \n \n Name: "+user.name+" \n Age: "+user.age+" \n Gender: "+user.gender+" \n Height: "+user.height+" \n Weight: "+user.weight+" \n Your Goal: "+user.goal)
         valid.setPositiveButton("Next", DialogInterface.OnClickListener{_, _->
             viewModel.newUser(user, false)
             var intent = Intent(this, MainActivity::class.java)
